@@ -1,0 +1,10 @@
+<package>
+    <description brief="TASTE 3D Visualization Library">
+        Provide TASTE integration of 3D OSG and Qt based framework for visualization of robotics data types (vizkit3d).
+        Visualization plugins for specific data items are within the respective packages.
+    </description>
+    <copyright>
+        SARGON consortium
+    </copyright>
+    <depend package="gui/vizkit3d" />
+</package>
