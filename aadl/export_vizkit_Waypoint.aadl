@@ -1,0 +1,82 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE export_vizkit_Waypoint::FV::vizkit_Waypoint
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateWaypoint
+FEATURES
+  waypoint : IN PARAMETER DataView::Waypoint {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateWaypoint;
+
+SUBPROGRAM IMPLEMENTATION PI_updateWaypoint.others
+END PI_updateWaypoint.others;
+
+END export_vizkit_Waypoint::FV::vizkit_Waypoint;
+
+PACKAGE export_vizkit_Waypoint::IV
+PUBLIC
+
+WITH export_vizkit_Waypoint::FV::vizkit_Waypoint;
+WITH export_vizkit_Waypoint::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_Waypoint
+FEATURES
+  PI_updateWaypoint : PROVIDES SUBPROGRAM ACCESS export_vizkit_Waypoint::FV::vizkit_Waypoint::PI_updateWaypoint.others {
+    Taste::coordinates => "878 419";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updateWaypoint";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_Waypoint;
+
+SYSTEM IMPLEMENTATION vizkit_Waypoint.others
+SUBCOMPONENTS
+  updateWaypoint_impl : SUBPROGRAM export_vizkit_Waypoint::FV::vizkit_Waypoint::PI_updateWaypoint.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updateWaypoint_impl : SUBPROGRAM ACCESS updateWaypoint_impl -> PI_updateWaypoint;
+END vizkit_Waypoint.others;
+
+SYSTEM export_vizkit_Waypoint
+END export_vizkit_Waypoint;
+
+SYSTEM IMPLEMENTATION export_vizkit_Waypoint.others
+SUBCOMPONENTS
+  vizkit_Waypoint : SYSTEM export_vizkit_Waypoint::IV::vizkit_Waypoint.others {
+    Taste::coordinates => "878 304 1176 453";
+  };
+END export_vizkit_Waypoint.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END export_vizkit_Waypoint::IV;
+
+PACKAGE export_vizkit_Waypoint::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END export_vizkit_Waypoint::FV;
+

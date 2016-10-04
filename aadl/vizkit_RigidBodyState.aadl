@@ -1,0 +1,85 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE export_vizkit_RigidBodyState::FV::vizkit_RigidBodyState
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateRigidBodyState
+FEATURES
+  state : IN PARAMETER DataView::RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateRigidBodyState;
+
+SUBPROGRAM IMPLEMENTATION PI_updateRigidBodyState.others
+END PI_updateRigidBodyState.others;
+
+END export_vizkit_RigidBodyState::FV::vizkit_RigidBodyState;
+
+PACKAGE export_vizkit_RigidBodyState::IV
+PUBLIC
+
+WITH export_vizkit_RigidBodyState::FV::vizkit_RigidBodyState;
+WITH export_vizkit_RigidBodyState::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_RigidBodyState
+FEATURES
+  PI_updateRigidBodyState : PROVIDES SUBPROGRAM ACCESS export_vizkit_RigidBodyState::FV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
+    Taste::coordinates => "1759 780";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updateRigidBodyState";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_RigidBodyState;
+
+SYSTEM IMPLEMENTATION vizkit_RigidBodyState.others
+SUBCOMPONENTS
+  updateRigidBodyState_impl : SUBPROGRAM export_vizkit_RigidBodyState::FV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updateRigidBodyState_impl : SUBPROGRAM ACCESS updateRigidBodyState_impl -> PI_updateRigidBodyState;
+END vizkit_RigidBodyState.others;
+
+SYSTEM export_vizkit_RigidBodyState
+END export_vizkit_RigidBodyState;
+
+SYSTEM IMPLEMENTATION export_vizkit_RigidBodyState.others
+SUBCOMPONENTS
+-- [ export_vizkit_RigidBodyState::IV::export_vizkit_RigidBodyState.others.vizkit_RigidBodyState - text 
+--vizkit3d plugin RigidBodyStateVisualization. 
+--]
+  vizkit_RigidBodyState : SYSTEM export_vizkit_RigidBodyState::IV::vizkit_RigidBodyState.others {
+    Taste::coordinates => "1759 585 2760 1236";
+  };
+END export_vizkit_RigidBodyState.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END export_vizkit_RigidBodyState::IV;
+
+PACKAGE export_vizkit_RigidBodyState::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END export_vizkit_RigidBodyState::FV;
+

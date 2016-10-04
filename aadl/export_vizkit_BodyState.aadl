@@ -1,0 +1,82 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE export_vizkit_BodyState::FV::vizkit_BodyState
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateBodyState
+FEATURES
+  state : IN PARAMETER DataView::BodyState {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateBodyState;
+
+SUBPROGRAM IMPLEMENTATION PI_updateBodyState.others
+END PI_updateBodyState.others;
+
+END export_vizkit_BodyState::FV::vizkit_BodyState;
+
+PACKAGE export_vizkit_BodyState::IV
+PUBLIC
+
+WITH export_vizkit_BodyState::FV::vizkit_BodyState;
+WITH export_vizkit_BodyState::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_BodyState
+FEATURES
+  PI_updateBodyState : PROVIDES SUBPROGRAM ACCESS export_vizkit_BodyState::FV::vizkit_BodyState::PI_updateBodyState.others {
+    Taste::coordinates => "1440 688";
+    Taste::RCMoperationKind => unprotected;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updateBodyState";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_BodyState;
+
+SYSTEM IMPLEMENTATION vizkit_BodyState.others
+SUBCOMPONENTS
+  updateBodyState_impl : SUBPROGRAM export_vizkit_BodyState::FV::vizkit_BodyState::PI_updateBodyState.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updateBodyState_impl : SUBPROGRAM ACCESS updateBodyState_impl -> PI_updateBodyState;
+END vizkit_BodyState.others;
+
+SYSTEM export_vizkit_BodyState
+END export_vizkit_BodyState;
+
+SYSTEM IMPLEMENTATION export_vizkit_BodyState.others
+SUBCOMPONENTS
+  vizkit_BodyState : SYSTEM export_vizkit_BodyState::IV::vizkit_BodyState.others {
+    Taste::coordinates => "1440 567 1763 724";
+  };
+END export_vizkit_BodyState.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END export_vizkit_BodyState::IV;
+
+PACKAGE export_vizkit_BodyState::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END export_vizkit_BodyState::FV;
+

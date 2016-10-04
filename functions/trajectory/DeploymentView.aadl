@@ -1,0 +1,84 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE deploymentview::DV::pc
+PUBLIC
+
+WITH Taste;
+WITH Deployment;
+WITH TASTE_DV_Properties;
+PROCESS x86_partition
+END x86_partition;
+
+PROCESS IMPLEMENTATION x86_partition.others
+END x86_partition.others;
+
+END deploymentview::DV::pc;
+
+PACKAGE deploymentview::DV
+PUBLIC
+
+WITH ocarina_processors_x86;
+WITH deploymentview::DV::pc;
+WITH Taste;
+WITH Deployment;
+WITH interfaceview::IV;
+WITH TASTE_DV_Properties;
+SYSTEM pc
+END pc;
+
+SYSTEM IMPLEMENTATION pc.others
+SUBCOMPONENTS
+  IV_vizkit_MotionCommand : SYSTEM interfaceview::IV::vizkit_MotionCommand.others {
+    Taste::coordinates => "518 790 1236 1036";
+    Taste::FunctionName => "vizkit_MotionCommand";
+  };
+  IV_vizkit_Waypoint : SYSTEM interfaceview::IV::vizkit_Waypoint.others {
+    Taste::coordinates => "1554 800 2180 1041";
+    Taste::FunctionName => "vizkit_Waypoint";
+  };
+  IV_vizkit_Trajectory : SYSTEM interfaceview::IV::vizkit_Trajectory.others {
+    Taste::coordinates => "528 1200 1216 1436";
+    Taste::FunctionName => "vizkit_Trajectory";
+  };
+  IV_test_Trajectory : SYSTEM interfaceview::IV::test_Trajectory.others {
+    Taste::coordinates => "1472 1185 2072 1426";
+    Taste::FunctionName => "test_Trajectory";
+  };
+  x86_partition : PROCESS deploymentview::DV::pc::x86_partition.others {
+    Taste::coordinates => "400 533 2330 1616";
+    Deployment::Port_Number => 0;
+  };
+  x86_native : PROCESSOR ocarina_processors_x86::x86.native {
+    Taste::coordinates => "251 267 2546 1743";
+  };
+PROPERTIES
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_MotionCommand;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Waypoint;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Trajectory;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_test_Trajectory;
+  Actual_Processor_Binding => (reference (x86_native)) APPLIES TO x86_partition;
+END pc.others;
+
+SYSTEM deploymentview
+END deploymentview;
+
+SYSTEM IMPLEMENTATION deploymentview.others
+SUBCOMPONENTS
+  pc : SYSTEM pc.others {
+    Taste::coordinates => "118 113 2816 1924";
+  };
+  interfaceview : SYSTEM interfaceview::IV::interfaceview.others;
+END deploymentview.others;
+
+PROPERTIES
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+  Taste::interfaceView => "InterfaceView.aadl";
+  Taste::HWLibraries => ("../../../../../../tool-inst/share/ocarina/AADLv2/ocarina_components.aadl");
+END deploymentview::DV;
+

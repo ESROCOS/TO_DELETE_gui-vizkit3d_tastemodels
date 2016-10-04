@@ -1,0 +1,82 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE export_vizkit_Pointcloud::FV::vizkit_Pointcloud
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updatePointCloud
+FEATURES
+  cloud : IN PARAMETER DataView::Pointcloud {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updatePointCloud;
+
+SUBPROGRAM IMPLEMENTATION PI_updatePointCloud.others
+END PI_updatePointCloud.others;
+
+END export_vizkit_Pointcloud::FV::vizkit_Pointcloud;
+
+PACKAGE export_vizkit_Pointcloud::IV
+PUBLIC
+
+WITH export_vizkit_Pointcloud::FV::vizkit_Pointcloud;
+WITH export_vizkit_Pointcloud::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_Pointcloud
+FEATURES
+  PI_updatePointCloud : PROVIDES SUBPROGRAM ACCESS export_vizkit_Pointcloud::FV::vizkit_Pointcloud::PI_updatePointCloud.others {
+    Taste::coordinates => "1001 336";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updatePointCloud";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_Pointcloud;
+
+SYSTEM IMPLEMENTATION vizkit_Pointcloud.others
+SUBCOMPONENTS
+  updatePointCloud_impl : SUBPROGRAM export_vizkit_Pointcloud::FV::vizkit_Pointcloud::PI_updatePointCloud.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updatePointCloud_impl : SUBPROGRAM ACCESS updatePointCloud_impl -> PI_updatePointCloud;
+END vizkit_Pointcloud.others;
+
+SYSTEM export_vizkit_Pointcloud
+END export_vizkit_Pointcloud;
+
+SYSTEM IMPLEMENTATION export_vizkit_Pointcloud.others
+SUBCOMPONENTS
+  vizkit_Pointcloud : SYSTEM export_vizkit_Pointcloud::IV::vizkit_Pointcloud.others {
+    Taste::coordinates => "1001 212 1391 371";
+  };
+END export_vizkit_Pointcloud.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END export_vizkit_Pointcloud::IV;
+
+PACKAGE export_vizkit_Pointcloud::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END export_vizkit_Pointcloud::FV;
+

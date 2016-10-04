@@ -1,0 +1,82 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE export_vizkit_Trajectory::FV::vizkit_Trajectory
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateTrajectory
+FEATURES
+  point : IN PARAMETER DataView::Vector3d {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateTrajectory;
+
+SUBPROGRAM IMPLEMENTATION PI_updateTrajectory.others
+END PI_updateTrajectory.others;
+
+END export_vizkit_Trajectory::FV::vizkit_Trajectory;
+
+PACKAGE export_vizkit_Trajectory::IV
+PUBLIC
+
+WITH export_vizkit_Trajectory::FV::vizkit_Trajectory;
+WITH export_vizkit_Trajectory::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_Trajectory
+FEATURES
+  PI_updateTrajectory : PROVIDES SUBPROGRAM ACCESS export_vizkit_Trajectory::FV::vizkit_Trajectory::PI_updateTrajectory.others {
+    Taste::coordinates => "882 245";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updateTrajectory";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_Trajectory;
+
+SYSTEM IMPLEMENTATION vizkit_Trajectory.others
+SUBCOMPONENTS
+  updateTrajectory_impl : SUBPROGRAM export_vizkit_Trajectory::FV::vizkit_Trajectory::PI_updateTrajectory.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updateTrajectory_impl : SUBPROGRAM ACCESS updateTrajectory_impl -> PI_updateTrajectory;
+END vizkit_Trajectory.others;
+
+SYSTEM export_vizkit_Trajectory
+END export_vizkit_Trajectory;
+
+SYSTEM IMPLEMENTATION export_vizkit_Trajectory.others
+SUBCOMPONENTS
+  vizkit_Trajectory : SYSTEM export_vizkit_Trajectory::IV::vizkit_Trajectory.others {
+    Taste::coordinates => "882 128 1175 277";
+  };
+END export_vizkit_Trajectory.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END export_vizkit_Trajectory::IV;
+
+PACKAGE export_vizkit_Trajectory::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END export_vizkit_Trajectory::FV;
+

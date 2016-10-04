@@ -1,0 +1,97 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE export_vizkit_SonarBeam::FV::vizkit_SonarBeam
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateSonarBeam
+FEATURES
+  beam : IN PARAMETER DataView::SonarBeam {
+    Taste::encoding => NATIVE;
+  };
+END PI_updateSonarBeam;
+
+SUBPROGRAM IMPLEMENTATION PI_updateSonarBeam.others
+END PI_updateSonarBeam.others;
+
+SUBPROGRAM PI_updateOrientation
+FEATURES
+  state : IN PARAMETER DataView::RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+END PI_updateOrientation;
+
+SUBPROGRAM IMPLEMENTATION PI_updateOrientation.others
+END PI_updateOrientation.others;
+
+END export_vizkit_SonarBeam::FV::vizkit_SonarBeam;
+
+PACKAGE export_vizkit_SonarBeam::IV
+PUBLIC
+
+WITH export_vizkit_SonarBeam::FV::vizkit_SonarBeam;
+WITH export_vizkit_SonarBeam::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_SonarBeam
+FEATURES
+  PI_updateSonarBeam : PROVIDES SUBPROGRAM ACCESS export_vizkit_SonarBeam::FV::vizkit_SonarBeam::PI_updateSonarBeam.others {
+    Taste::coordinates => "1004 861";
+    Taste::RCMoperationKind => sporadic;
+    Taste::InterfaceName => "updateSonarBeam";
+  };
+  PI_updateOrientation : PROVIDES SUBPROGRAM ACCESS export_vizkit_SonarBeam::FV::vizkit_SonarBeam::PI_updateOrientation.others {
+    Taste::coordinates => "1004 890";
+    Taste::RCMoperationKind => sporadic;
+    Taste::InterfaceName => "updateOrientation";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_SonarBeam;
+
+SYSTEM IMPLEMENTATION vizkit_SonarBeam.others
+SUBCOMPONENTS
+  updateSonarBeam_impl : SUBPROGRAM export_vizkit_SonarBeam::FV::vizkit_SonarBeam::PI_updateSonarBeam.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+  updateOrientation_impl : SUBPROGRAM export_vizkit_SonarBeam::FV::vizkit_SonarBeam::PI_updateOrientation.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updateSonarBeam_impl : SUBPROGRAM ACCESS updateSonarBeam_impl -> PI_updateSonarBeam;
+  OpToPICnx_updateOrientation_impl : SUBPROGRAM ACCESS updateOrientation_impl -> PI_updateOrientation;
+END vizkit_SonarBeam.others;
+
+SYSTEM export_vizkit_SonarBeam
+END export_vizkit_SonarBeam;
+
+SYSTEM IMPLEMENTATION export_vizkit_SonarBeam.others
+SUBCOMPONENTS
+  vizkit_SonarBeam : SYSTEM export_vizkit_SonarBeam::IV::vizkit_SonarBeam.others {
+    Taste::coordinates => "1004 757 1394 911";
+  };
+END export_vizkit_SonarBeam.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END export_vizkit_SonarBeam::IV;
+
+PACKAGE export_vizkit_SonarBeam::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END export_vizkit_SonarBeam::FV;
+
