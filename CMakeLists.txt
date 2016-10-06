@@ -24,14 +24,15 @@
 cmake_minimum_required(VERSION 2.6)
 
 # Check SARGON environment
-if (NOT DEFINED ENV{SARGON_CURRENT_ROOT})
-    message(FATAL_ERROR "Environment variable SARGON_CURRENT_ROOT not set. Run env.sh.")
+if (NOT DEFINED ENV{AUTOPROJ_CURRENT_ROOT})
+    message(FATAL_ERROR "Environment variable AUTOPROJ_CURRENT_ROOT not set.")
 endif()
 
 find_package(Sargon)
 set(SARGON_USE_CXX11 TRUE)
 set(CMAKE_BUILD_TYPE $ENV{CMAKE_BUILD_TYPE})
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(SARGON_TEST_ENABLED, OFF)
 sargon_init(vizkit-taste 0.1)
 sargon_find_cmake(Boost REQUIRED COMPONENTS thread system)
 sargon_standard_layout()
