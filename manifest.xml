@@ -6,5 +6,6 @@
     <copyright>
         SARGON consortium
     </copyright>
+    <depend package="tools/cmake" />
     <depend package="gui/vizkit3d" />
 </package>
