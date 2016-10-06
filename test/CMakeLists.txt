@@ -40,18 +40,18 @@ set(HEADERS
 sargon_executable(test-bodystate
     SOURCES test-bodystate.cpp
     HEADERS ${HEADERS}
-    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base base-viz yaml-cpp
+    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base-types base-viz yaml-cpp
     LIBS ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} pthread vizkit-taste)
 
 sargon_executable(test-range
     SOURCES test-range.cpp
     HEADERS ${HEADERS}
-    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base base-viz yaml-cpp
+    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base-types base-viz yaml-cpp
     LIBS ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} pthread vizkit-taste)
 
 sargon_executable(test-trajectory
     SOURCES test-trajectory.cpp
     HEADERS ${HEADERS}
-    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base base-viz yaml-cpp
+    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base-types base-viz yaml-cpp
     LIBS ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} pthread vizkit-taste)
 

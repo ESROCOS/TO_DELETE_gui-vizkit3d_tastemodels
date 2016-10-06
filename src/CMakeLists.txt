@@ -83,6 +83,6 @@ set(HEADERS
 sargon_library(vizkit-taste 
     SOURCES ${SOURCES}
     HEADERS ${HEADERS}
-    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base base-viz asn1-types asn1-wrappers yaml-cpp
+    DEPS_PKGCONFIG vizkit3d vizkit3d-viz base-types base-viz asn1-types asn1-wrappers yaml-cpp
     LIBS ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY})
 
