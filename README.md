@@ -1,6 +1,6 @@
 vizkit-taste
-=============
-Vizkit3d library for use in TASTE.
+===========
+TASTE components for data visualization with vizkit3d.
 
 License
 -------
