@@ -38,14 +38,38 @@ exit_on_error() {
 # Definitions
 OLD_DIR=`pwd`
 BASE_DIR=$1
-PACKAGE="vizkit-taste"
-TESTS_DIR=$BASE_DIR/functions
+PACKAGE="taste/vizkit3d"
 
-echo "Running the $PACKAGE test in $TESTS_DIR"
+echo "[START] Running the $PACKAGE tests"
 
-cd $TESTS_DIR
-taskset -c 0 ./binary.c/binaries/x86_partition
+echo "[START] Test of bodystate functions"
+
+cd $BASE_DIR/functions/bodystate
+taskset -c 0 ./binary.c/binaries/x86_partition &
 exit_on_error
+cd $OLD_DIR
+
+echo "[END] Test of bodystate functions"
+
+echo "[START] Test of range functions"
+
+cd $BASE_DIR/functions/range
+taskset -c 0 ./binary.c/binaries/x86_partition &
+exit_on_error
+cd $OLD_DIR
+
+echo "[END] Test of range functions"
+
+echo "[START] Test of trajectory functions"
+
+cd $BASE_DIR/functions/trajectory
+taskset -c 0 ./binary.c/binaries/x86_partition &
+exit_on_error
+cd $OLD_DIR
+
+echo "[END] Test of trajectory functions"
+
+echo "Close window and press Ctrl+C to end tests"
 
 cd $OLD_DIR
 

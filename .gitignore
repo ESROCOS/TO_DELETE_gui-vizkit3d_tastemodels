@@ -7,4 +7,6 @@ functions/*/config-*.yml
 functions/bodystate/stim300.stl
 functions/range/sargon.png
 functions/range/sonar_beam.data
+functions/*/coverage.info
+functions/*/coverage
 export
