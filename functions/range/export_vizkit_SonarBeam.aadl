@@ -16,6 +16,8 @@ FEATURES
   beam : IN PARAMETER DataView::SonarBeam {
     Taste::encoding => NATIVE;
   };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
 END PI_updateSonarBeam;
 
 SUBPROGRAM IMPLEMENTATION PI_updateSonarBeam.others
@@ -26,6 +28,8 @@ FEATURES
   state : IN PARAMETER DataView::RigidBodyState {
     Taste::encoding => NATIVE;
   };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
 END PI_updateOrientation;
 
 SUBPROGRAM IMPLEMENTATION PI_updateOrientation.others
@@ -46,11 +50,15 @@ FEATURES
   PI_updateSonarBeam : PROVIDES SUBPROGRAM ACCESS export_vizkit_SonarBeam::FV::vizkit_SonarBeam::PI_updateSonarBeam.others {
     Taste::coordinates => "1004 861";
     Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updateSonarBeam";
   };
   PI_updateOrientation : PROVIDES SUBPROGRAM ACCESS export_vizkit_SonarBeam::FV::vizkit_SonarBeam::PI_updateOrientation.others {
     Taste::coordinates => "1004 890";
     Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updateOrientation";
   };
 PROPERTIES

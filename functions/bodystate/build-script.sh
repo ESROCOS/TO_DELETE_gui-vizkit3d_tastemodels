@@ -22,8 +22,7 @@ fi
 SKELS="./"
 
 # Update the data view with local paths
-#taste-update-data-view
-./compileAllASN.sh
+./update-data-view.sh
 
 cd "$SKELS" && rm -f vizkit_bodystate.zip && zip vizkit_bodystate vizkit_bodystate/* && cd $OLDPWD
 
@@ -59,7 +58,7 @@ assert-builder-ocarina.py \
 	--subC vizkit_bodystate:"$SKELS"/vizkit_bodystate.zip \
 	--subC vizkit_rigidbodystate:"$SKELS"/vizkit_rigidbodystate.zip \
 	--subC test_bodystate:"$SKELS"/test_bodystate.zip \
-	-e x86_partition:"$SARGON_CURRENT_ROOT"/install/include \
-	-l x86_partition:"$SARGON_CURRENT_ROOT"/install/lib/libvizkit-taste.so \
-	-l x86_partition:"$SARGON_CURRENT_ROOT"/install/lib/libasn1-wrappers.so \
+	-e x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/include \
+	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libvizkit-taste.so \
+	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libasn1-wrappers.so \
 	$ORCHESTRATOR_OPTIONS
