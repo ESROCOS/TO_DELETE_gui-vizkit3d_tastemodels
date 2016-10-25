@@ -37,7 +37,7 @@ exit_on_error() {
 # Definitions
 BASE_DIR=$1
 INSTALL_DIR=$2
-PACKAGE="cameraviz"
+PACKAGE="taste/vizkit3d"
 EXPORT_DIR=$BASE_DIR/export
 TARGET_DIR=$INSTALL_DIR/share/$PACKAGE
 

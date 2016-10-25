@@ -22,6 +22,10 @@ fi
 
 echo "Copying export files"
 
+EXPORT_DIR=../../export
+
+mkdir -p $EXPORT_DIR
+
 cp export_vizkit_DepthMap.aadl \
    export_vizkit_LaserScan.aadl \
    export_vizkit_SonarBeam.aadl \
@@ -31,5 +35,5 @@ cp export_vizkit_DepthMap.aadl \
    vizkit_pointcloud.zip \
    vizkit_sonarbeam.zip \
    update-data-view.sh \
-   ../../export/
+   $EXPORT_DIR
 
