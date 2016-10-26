@@ -1,5 +1,28 @@
 #!/bin/sh
 
+# ======================================================================
+#  FILE:  $URL$
+# ======================================================================
+#  PROJECT:             :  SARGON
+#  VERSION              :  $Revision$
+#  LANGUAGE             :  Shell script
+#  AUTHOR               :  $LastChangedBy$ 
+#  COPYRIGHT            :  AVOS - GMV,S.A.
+#  COMPILER             :  -
+#  CREATED              :  $CreationDate$
+#  CLASS                :  -
+#  LAST MODIFIED        :  $LastChangedDate$
+#  GENERATED FROM MODEL :  -
+#  ORIGINAL MODEL AUTHOR:  -
+#
+# ..................................................................
+#  Copy exported TASTE functions and related files to the export folder.
+# ..................................................................
+#  HISTORY
+#  $History$
+#
+# ======================================================================
+
 if [ InterfaceView.aadl -nt export_vizkit_DepthMap.aadl ] ; then
     echo "Interface View model is newer than export_vizkit_DepthMap.aadl. Redo export."
     exit 1

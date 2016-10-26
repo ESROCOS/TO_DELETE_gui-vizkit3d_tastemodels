@@ -16,33 +16,21 @@
 #  ORIGINAL MODEL AUTHOR:  -
 #
 # ..................................................................
-#  Copy exported TASTE functions and related files to the export folder.
+#  Set the Git filters to replace file header labels.
+#  Run script at the repository root folder.
 # ..................................................................
 #  HISTORY
 #  $History$
 #
 # ======================================================================
 
-if [ InterfaceView.aadl -nt export_vizkit_RigidBodyState.aadl ] ; then
-    echo "Interface View model is newer than export_vizkit_RigidBodyState.aadl. Redo export."
+if [ ! -d "$AUTOPROJ_CURRENT_ROOT/autoproj/gitfilters" ] ; then
+    echo "Git filters folder not found at $AUTOPROJ_CURRENT_ROOT/autoproj/gitfilters"
     exit 1
 fi
 
-if [ InterfaceView.aadl -nt export_vizkit_BodyState.aadl ] ; then
-    echo "Interface View model is newer than export_vizkit_BodyState.aadl. Redo export."
-    exit 1
-fi
+echo "Configuring Git filter 'repolabels'"
 
-echo "Copying export files"
-
-EXPORT_DIR=../../export
-
-mkdir -p $EXPORT_DIR
-
-cp export_vizkit_RigidBodyState.aadl \
-   export_vizkit_BodyState.aadl \
-   vizkit_rigidbodystate.zip \
-   vizkit_bodystate.zip \
-   update-data-view.sh \
-   $EXPORT_DIR
+git config filter.repolabels.smudge 'repolabels-smudge.awk -v URL=%f'
+git config filter.repolabels.clean 'repolabels-clean.awk'
 

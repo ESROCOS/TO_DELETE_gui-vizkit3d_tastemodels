@@ -1,0 +1,58 @@
+######## Filters to replace version info in files ######################
+
+*.py filter=repolabels
+*.java filter=repolabels
+*.c filter=repolabels
+*.cpp filter=repolabels
+*.h filter=repolabels
+*.hpp filter=repolabels
+*.txt filter=repolabels
+*.sh filter=repolabels
+*.txt filter=repolabels
+*.asn filter=repolabels
+
+######## EOL handling ##################################################
+
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.aadl
+*.asn
+*.awk
+*.bat
+*.c
+*.cpp
+*.css
+*.h
+*.hpp
+*.htm
+*.java
+*.jj
+*.js
+*.md
+*.orogen
+*.prefs
+*.py
+*.rb
+*.sh
+*.txt
+*.xml
+.classpath
+.gitattributes
+.gitignore
+.project
+
+# Declare files that will always have CRLF line endings on checkout.
+#*.sln text eol=crlf
+
+# Denote all files that are truly binary and should not be modified.
+*.class binary
+*.gif binary
+*.jar binary
+*.jpg binary
+*.pdf binary
+*.png binary
+*.tar binary
+*.zip binary
