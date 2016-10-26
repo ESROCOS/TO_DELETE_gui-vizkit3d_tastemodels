@@ -25,12 +25,12 @@
  *
  * ================================================================== */
 
-#include "vizkit-taste/vizkit-taste.h"
-#include "vizkit-taste/pointcloudPluginWrapper.h"
-#include "vizkit-taste/depthMapPluginWrapper.h"
-#include "vizkit-taste/laserScanPluginWrapper.h"
-#include "vizkit-taste/sonarBeamPluginWrapper.h"
-#include "asn1-wrappers/asn1SccUtils.h"
+#include "vizkit3d_c/vizkit3d_c.h"
+#include "vizkit3d_c/pointcloudPluginWrapper.h"
+#include "vizkit3d_c/depthMapPluginWrapper.h"
+#include "vizkit3d_c/laserScanPluginWrapper.h"
+#include "vizkit3d_c/sonarBeamPluginWrapper.h"
+#include "asn1_types_support/asn1SccUtils.h"
 #include <thread>
 #include <cmath>
 #include <iostream>
@@ -181,7 +181,7 @@ int main(int argc, char** argv)
     int result = initializeVizkitOnce("config-range.yml");
     if (VIZTASTE_OK != result)
     {
-        std::cerr << "vizkit-taste initialization error" << std::endl;
+        std::cerr << "taste/vizkit3d initialization error" << std::endl;
         return 1;
     }
     

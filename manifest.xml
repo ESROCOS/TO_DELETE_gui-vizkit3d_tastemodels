@@ -5,5 +5,5 @@
     <copyright>
         GMV S.A.
     </copyright>
-    <depend package="gui/vizkit3d_lib" />
+    <depend package="gui/vizkit3d_c" />
 </package>

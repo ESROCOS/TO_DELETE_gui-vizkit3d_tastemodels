@@ -5,8 +5,8 @@
 /* Function static data is declared in this file : */
 #include "Context-vizkit-pointcloud.h"
 
-#include "vizkit-taste/vizkit-taste.h"
-#include "vizkit-taste/pointcloudPluginWrapper.h"
+#include "vizkit3d_c/vizkit3d_c.h"
+#include "vizkit3d_c/pointcloudPluginWrapper.h"
 #include <stdio.h>
 
 int g_statusOk = 0; // flag to avoid calling vizkit3d if instance not initialized or failed

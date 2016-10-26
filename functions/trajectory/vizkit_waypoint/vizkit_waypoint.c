@@ -5,8 +5,8 @@
 /* Function static data is declared in this file : */
 #include "Context-vizkit-waypoint.h"
 
-#include "vizkit-taste/vizkit-taste.h"
-#include "vizkit-taste/waypointPluginWrapper.h"
+#include "vizkit3d_c/vizkit3d_c.h"
+#include "vizkit3d_c/waypointPluginWrapper.h"
 #include <stdio.h>
 
 int g_statusOk = 0; // flag to avoid calling vizkit3d if instance not initialized or failed

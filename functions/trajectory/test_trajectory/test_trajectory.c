@@ -2,7 +2,7 @@
 
 #include "test_trajectory.h"
 
-#include "asn1-wrappers/asn1SccUtils.h"
+#include "asn1_types_support/asn1SccUtils.h"
 #include <math.h>
 
 // Globals

@@ -1,5 +1,5 @@
-vizkit-taste
-===========
+taste/vizkit3d
+=============
 TASTE components for data visualization with vizkit3d.
 
 License

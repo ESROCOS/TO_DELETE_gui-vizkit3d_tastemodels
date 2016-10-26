@@ -65,6 +65,6 @@ assert-builder-ocarina.py \
 	--subC vizkit_laserscan:"$SKELS"/vizkit_laserscan.zip \
 	--subC vizkit_sonarbeam:"$SKELS"/vizkit_sonarbeam.zip \
 	-e x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/include \
-	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libvizkit-taste.so \
-	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libasn1-wrappers.so \
+	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libvizkit3d_c.so \
+	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libasn1_types_support.so \
 	$ORCHESTRATOR_OPTIONS

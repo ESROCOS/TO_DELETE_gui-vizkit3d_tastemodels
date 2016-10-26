@@ -16,7 +16,7 @@
 #  ORIGINAL MODEL AUTHOR:  -
 #
 # ..................................................................
-#  Build the functions directory of vizkit-taste.
+#  Build the functions directory of taste/vizkit3d.
 #  Usage:
 #  # build-functions.sh <VIZKIT-TASTE_DIR>
 # ..................................................................
@@ -38,7 +38,7 @@ exit_on_error() {
 # Definitions
 OLD_DIR=`pwd`
 BASE_DIR=$1
-PACKAGE="vizkit-taste"
+PACKAGE="taste/vizkit3d"
 FUNCTIONS_DIR=$BASE_DIR/functions
 
 echo "[START] Building $PACKAGE in $FUNCTIONS_DIR"

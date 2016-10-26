@@ -5,8 +5,8 @@
 /* Function static data is declared in this file : */
 #include "Context-vizkit-sonarbeam.h"
 
-#include "vizkit-taste/vizkit-taste.h"
-#include "vizkit-taste/sonarBeamPluginWrapper.h"
+#include "vizkit3d_c/vizkit3d_c.h"
+#include "vizkit3d_c/sonarBeamPluginWrapper.h"
 #include <stdio.h>
 
 int g_statusOk = 0; // flag to avoid calling vizkit3d if instance not initialized or failed

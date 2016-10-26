@@ -5,8 +5,8 @@
 /* Function static data is declared in this file : */
 #include "Context-vizkit-rigidbodystate.h"
 
-#include "vizkit-taste/vizkit-taste.h"
-#include "vizkit-taste/rigidBodyStatePluginWrapper.h"
+#include "vizkit3d_c/vizkit3d_c.h"
+#include "vizkit3d_c/rigidBodyStatePluginWrapper.h"
 #include <stdio.h>
 
 int g_statusOk = 0; // flag to avoid calling vizkit3d if instance not initialized or failed

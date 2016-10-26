@@ -2,7 +2,7 @@
 
 #include "test_range.h"
 
-#include "asn1-wrappers/asn1SccUtils.h"
+#include "asn1_types_support/asn1SccUtils.h"
 #include <math.h>
 #include <stddef.h>
 #include <stdio.h>

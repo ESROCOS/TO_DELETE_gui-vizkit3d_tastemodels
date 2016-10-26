@@ -23,10 +23,10 @@
  *
  * ================================================================== */
 
-#include "vizkit-taste/vizkit-taste.h"
-#include "vizkit-taste/bodyStatePluginWrapper.h"
-#include "vizkit-taste/rigidBodyStatePluginWrapper.h"
-#include "asn1-wrappers/asn1SccUtils.h"
+#include "vizkit3d_c/vizkit3d_c.h"
+#include "vizkit3d_c/bodyStatePluginWrapper.h"
+#include "vizkit3d_c/rigidBodyStatePluginWrapper.h"
+#include "asn1_types_support/asn1SccUtils.h"
 #include <thread>
 #include <cmath>
 #include <iostream>
@@ -88,7 +88,7 @@ int main(int argc, char** argv)
     int result = initializeVizkitOnce("config-bodystate.yml");
     if (VIZTASTE_OK != result)
     {
-        std::cerr << "vizkit-taste initialization error" << std::endl;
+        std::cerr << "taste/vizkit3d initialization error" << std::endl;
         return 1;
     }
 

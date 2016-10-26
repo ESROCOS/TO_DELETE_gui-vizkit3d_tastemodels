@@ -23,6 +23,6 @@
 #
 # ======================================================================
 
-lcov --capture --directory . --directory $AUTOPROJ_CURRENT_ROOT/gui/vizkit3d_lib --output-file coverage.info --no-external
+lcov --capture --directory . --directory $AUTOPROJ_CURRENT_ROOT/gui/vizkit3d_c --output-file coverage.info --no-external
 genhtml coverage.info --output-directory coverage
 xdg-open coverage/index.html    
