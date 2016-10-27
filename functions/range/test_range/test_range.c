@@ -14,6 +14,8 @@ asn1SccDepthMap map;
 asn1SccLaserScan scan;
 asn1SccRigidBodyState pose;
 asn1SccVector3d zAxis;
+asn1SccRigidBodyState sonarPose;
+
 
 const char* sonarDataFile = "sonar_beam.data";
 #define maxSonarData 10000
@@ -50,6 +52,7 @@ void test_range_startup()
     scan.maxRange = 1000.0;
     
     // Sonar beam
+    sonarPose.a_orientation = Orientation_create(0.707, 0.0, 0.707, 0.0);
     size_t count = readSonarBeamFile(sonarDataFile, sonarData, maxSonarData);
     if (count > 0)
     {
@@ -99,6 +102,7 @@ void test_range_PI_trigger()
     // Sonar
     if (NULL != sonarData[sonarCount % maxSonarData])
     {
+        test_range_RI_updateOrientation_Sonar(&sonarPose);
         test_range_RI_updateSonarBeam(sonarData[sonarCount++ % maxSonarData]);
     }
 
