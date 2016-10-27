@@ -57,6 +57,6 @@ cp export_vizkit_DepthMap.aadl \
    vizkit_laserscan.zip \
    vizkit_pointcloud.zip \
    vizkit_sonarbeam.zip \
-   update-data-view.sh \
+   ../../scripts/update-data-view.sh \
    $EXPORT_DIR
 

@@ -22,7 +22,7 @@ fi
 SKELS="./"
 
 # Update the data view with local paths
-./update-data-view.sh
+../../scripts/update-data-view.sh
 
 cd "$SKELS" && rm -f vizkit_bodystate.zip && zip vizkit_bodystate vizkit_bodystate/* && cd $OLDPWD
 
@@ -48,6 +48,7 @@ else
     OUTPUTDIR=binary
 fi
 assert-builder-ocarina.py \
+        --no-retry \
 	--fast \
 	--debug \
 	--aadlv2 \

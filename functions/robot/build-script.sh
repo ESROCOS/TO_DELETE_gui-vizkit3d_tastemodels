@@ -14,6 +14,12 @@
 # Note: TASTE will not overwrite your changes - if you need to update some parts
 #       you will have to merge the changes with the newly-created file.
 
+if [ -f user_init_pre.sh ]
+then
+    echo [INFO] Executing user-defined init script
+    source user_init_pre.sh
+fi
+
 if [ -z "$DEPLOYMENTVIEW" ]
 then
     DEPLOYMENTVIEW=DeploymentView.aadl
@@ -24,13 +30,9 @@ SKELS="./"
 # Update the data view with local paths
 ../../scripts/update-data-view.sh
 
-cd "$SKELS" && rm -f test_trajectory.zip && zip test_trajectory test_trajectory/* && cd $OLDPWD
+cd "$SKELS" && rm -f vizkit_robot.zip && zip vizkit_robot vizkit_robot/* && cd $OLDPWD
 
-cd "$SKELS" && rm -f vizkit_trajectory.zip && zip vizkit_trajectory vizkit_trajectory/* && cd $OLDPWD
-
-cd "$SKELS" && rm -f vizkit_waypoint.zip && zip vizkit_waypoint vizkit_waypoint/* && cd $OLDPWD
-
-cd "$SKELS" && rm -f vizkit_motioncommand.zip && zip vizkit_motioncommand vizkit_motioncommand/* && cd $OLDPWD
+cd "$SKELS" && rm -f test_robot.zip && zip test_robot test_robot/* && cd $OLDPWD
 
 [ ! -z "$CLEANUP" ] && rm -rf binary
 
@@ -49,6 +51,13 @@ then
 else
     OUTPUTDIR=binary
 fi
+
+if [ -f user_init_post.sh ]
+then
+    echo [INFO] Executing user-defined init script
+    source user_init_post.sh
+fi
+
 assert-builder-ocarina.py \
         --no-retry \
 	--fast \
@@ -58,10 +67,8 @@ assert-builder-ocarina.py \
 	--interfaceView InterfaceView.aadl \
 	--deploymentView "$DEPLOYMENTVIEW" \
 	-o "$OUTPUTDIR" \
-	--subC test_trajectory:"$SKELS"/test_trajectory.zip \
-	--subC vizkit_trajectory:"$SKELS"/vizkit_trajectory.zip \
-	--subC vizkit_waypoint:"$SKELS"/vizkit_waypoint.zip \
-	--subC vizkit_motioncommand:"$SKELS"/vizkit_motioncommand.zip \
+	--subC vizkit_robot:"$SKELS"/vizkit_robot.zip \
+	--subC test_robot:"$SKELS"/test_robot.zip \
 	-e x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/include \
 	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libvizkit3d_c.so \
 	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libasn1_types_support.so \

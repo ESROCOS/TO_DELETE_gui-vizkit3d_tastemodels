@@ -22,7 +22,7 @@ fi
 SKELS="./"
 
 # Update the data view with local paths
-./update-data-view.sh
+../../scripts/update-data-view.sh
 
 cd "$SKELS" && rm -f test_range.zip && zip test_range test_range/* && cd $OLDPWD
 
@@ -52,6 +52,7 @@ else
     OUTPUTDIR=binary
 fi
 assert-builder-ocarina.py \
+        --no-retry \
 	--fast \
 	--debug \
 	--aadlv2 \

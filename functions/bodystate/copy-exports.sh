@@ -43,6 +43,6 @@ cp export_vizkit_RigidBodyState.aadl \
    export_vizkit_BodyState.aadl \
    vizkit_rigidbodystate.zip \
    vizkit_bodystate.zip \
-   update-data-view.sh \
+   ../../scripts/update-data-view.sh \
    $EXPORT_DIR
 

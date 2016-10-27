@@ -23,13 +23,8 @@
 #
 # ======================================================================
 
-if [ InterfaceView.aadl -nt export_vizkit_Trajectory.aadl ] ; then
-    echo "Interface View model is newer than export_vizkit_Trajectory.aadl. Redo export."
-    exit 1
-fi
-
-if [ InterfaceView.aadl -nt export_vizkit_Waypoint.aadl ] ; then
-    echo "Interface View model is newer than export_vizkit_Waypoint.aadl. Redo export."
+if [ InterfaceView.aadl -nt export_vizkit_Robot.aadl ] ; then
+    echo "Interface View model is newer than export_vizkit_Robot.aadl. Redo export."
     exit 1
 fi
 
@@ -39,9 +34,8 @@ EXPORT_DIR=../../export
 
 mkdir -p $EXPORT_DIR
 
-cp export_vizkit_Trajectory.aadl \
-   export_vizkit_Waypoint.aadl \
-   vizkit_trajectory.zip \
-   vizkit_waypoint.zip \
+cp export_vizkit_Robot.aadl \
+   vizkit_robot.zip \
    ../../scripts/update-data-view.sh \
    $EXPORT_DIR
+

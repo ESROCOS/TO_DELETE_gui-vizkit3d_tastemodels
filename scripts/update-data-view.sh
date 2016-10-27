@@ -6,6 +6,8 @@ $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/BodyState.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/Covariance.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/DepthMap.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/Eigen.asn \
+$AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/Joints.asn \
+$AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/JointState.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/LaserScan.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/Motion2D.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/Point.asn \
