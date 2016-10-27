@@ -1,0 +1,191 @@
+---------------------------------------------------
+-- AADL2.0
+-- TASTE
+-- (c)Ellidiss Technologies
+-- 
+---------------------------------------------------
+
+PACKAGE interfaceview::FV::vizkit_Robot
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateRigidBodyState
+FEATURES
+  state : IN PARAMETER DataView::RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateRigidBodyState;
+
+SUBPROGRAM IMPLEMENTATION PI_updateRigidBodyState.others
+END PI_updateRigidBodyState.others;
+
+SUBPROGRAM PI_updateJoints
+FEATURES
+  joints : IN PARAMETER DataView::Joints {
+    Taste::encoding => NATIVE;
+  };
+END PI_updateJoints;
+
+SUBPROGRAM IMPLEMENTATION PI_updateJoints.others
+END PI_updateJoints.others;
+
+END interfaceview::FV::vizkit_Robot;
+
+PACKAGE interfaceview::FV::test_Robot
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_trigger
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_trigger;
+
+SUBPROGRAM IMPLEMENTATION PI_trigger.others
+END PI_trigger.others;
+
+SUBPROGRAM RI_updateRigidBodyState
+FEATURES
+  state : IN PARAMETER DataView::RigidBodyState {
+    Taste::encoding => NATIVE;
+  };
+END RI_updateRigidBodyState;
+
+SUBPROGRAM IMPLEMENTATION RI_updateRigidBodyState.others
+END RI_updateRigidBodyState.others;
+
+SUBPROGRAM RI_updateJoints
+FEATURES
+  joints : IN PARAMETER DataView::Joints {
+    Taste::encoding => NATIVE;
+  };
+END RI_updateJoints;
+
+SUBPROGRAM IMPLEMENTATION RI_updateJoints.others
+END RI_updateJoints.others;
+
+END interfaceview::FV::test_Robot;
+
+PACKAGE interfaceview::IV
+PUBLIC
+
+WITH interfaceview::FV::vizkit_Robot;
+WITH interfaceview::FV::test_Robot;
+WITH interfaceview::FV;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM vizkit_Robot
+FEATURES
+  PI_updateRigidBodyState : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Robot::PI_updateRigidBodyState.others {
+    Taste::coordinates => "1432 570";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updateRigidBodyState";
+  };
+  PI_updateJoints : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Robot::PI_updateJoints.others {
+    Taste::coordinates => "1433 613";
+    Taste::RCMoperationKind => sporadic;
+    Taste::InterfaceName => "updateJoints";
+  };
+PROPERTIES
+  Source_Language => (C);
+END vizkit_Robot;
+
+SYSTEM IMPLEMENTATION vizkit_Robot.others
+SUBCOMPONENTS
+  configFile : DATA DataView::VizkitFilePath {
+    Taste::FS_Default_Value => """config-robot.yml""";
+  };
+  id : DATA DataView::VizkitPluginLabel {
+    Taste::FS_Default_Value => """Robot""";
+  };
+  updateRigidBodyState_impl : SUBPROGRAM interfaceview::FV::vizkit_Robot::PI_updateRigidBodyState.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+  updateJoints_impl : SUBPROGRAM interfaceview::FV::vizkit_Robot::PI_updateJoints.others {
+    Compute_Execution_Time => 0 ms .. 0 ms;
+  };
+CONNECTIONS
+  OpToPICnx_updateRigidBodyState_impl : SUBPROGRAM ACCESS updateRigidBodyState_impl -> PI_updateRigidBodyState;
+  OpToPICnx_updateJoints_impl : SUBPROGRAM ACCESS updateJoints_impl -> PI_updateJoints;
+END vizkit_Robot.others;
+
+SYSTEM test_Robot
+FEATURES
+  PI_trigger : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::test_Robot::PI_trigger.others {
+    Taste::coordinates => "524 463";
+    Taste::RCMoperationKind => cyclic;
+    Taste::RCMperiod => 100 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "trigger";
+  };
+  RI_updateRigidBodyState : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Robot::PI_updateRigidBodyState.others {
+    Taste::coordinates => "956 570";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "updateRigidBodyState";
+    Taste::labelInheritance => "true";
+  };
+  RI_updateJoints : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Robot::PI_updateJoints.others {
+    Taste::coordinates => "956 613";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "updateJoints";
+    Taste::labelInheritance => "true";
+  };
+PROPERTIES
+  Source_Language => (C);
+END test_Robot;
+
+SYSTEM IMPLEMENTATION test_Robot.others
+SUBCOMPONENTS
+  trigger_impl : SUBPROGRAM interfaceview::FV::test_Robot::PI_trigger.others {
+    Compute_Execution_Time => 0 ms .. 100 ms;
+  };
+CONNECTIONS
+  OpToPICnx_trigger_impl : SUBPROGRAM ACCESS trigger_impl -> PI_trigger;
+END test_Robot.others;
+
+SYSTEM interfaceview
+END interfaceview;
+
+SYSTEM IMPLEMENTATION interfaceview.others
+SUBCOMPONENTS
+-- [ interfaceview::IV::interfaceview.others.vizkit_Robot - text 
+--vizkit3d plugin RigidBodyStateVisualization. 
+--]
+  vizkit_Robot : SYSTEM interfaceview::IV::vizkit_Robot.others {
+    Taste::coordinates => "1432 432 1783 647";
+  };
+  test_Robot : SYSTEM interfaceview::IV::test_Robot.others {
+    Taste::coordinates => "524 430 956 650";
+  };
+CONNECTIONS
+  vizkit_Robot_updateRigidBodyState_test_Robot_updateRigidBodyState : SUBPROGRAM ACCESS vizkit_Robot.PI_updateRigidBodyState -> test_Robot.RI_updateRigidBodyState {
+    Taste::coordinates => "956 570 1186 570 1186 570 1432 570";
+  };
+  vizkit_Robot_updateJoints_test_Robot_updateJoints : SUBPROGRAM ACCESS vizkit_Robot.PI_updateJoints -> test_Robot.RI_updateJoints {
+    Taste::coordinates => "956 613 1194 613 1194 613 1433 613";
+  };
+END interfaceview.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "1.3.17";
+END interfaceview::IV;
+
+PACKAGE interfaceview::FV
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+END interfaceview::FV;
+

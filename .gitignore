@@ -1,12 +1,14 @@
 doc/Doxyfile
 *.swp
 *.zip
+functions/*/build-script.sh.old
 functions/*/binary.c
 functions/*/DataView.aadl
 functions/*/config-*.yml
 functions/bodystate/stim300.stl
 functions/range/sargon.png
 functions/range/sonar_beam.data
+functions/robot/spacebot_arm*
 functions/*/coverage.info
 functions/*/coverage
 export

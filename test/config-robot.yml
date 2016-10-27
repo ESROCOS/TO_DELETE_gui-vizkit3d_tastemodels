@@ -17,7 +17,7 @@ plugins:
       jointsSize: 0.05
       followModelWithCamera: false
       rootLink: base_link
-      segmentNamesEnabled: true
+      segmentNamesEnabled: false
       frame:
           base: world_osg
           position: [0, 0, 0]
