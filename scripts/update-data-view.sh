@@ -21,7 +21,7 @@ $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/TwistWithCovariance.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/Waypoint.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/taste-types.asn \
 $AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/base/taste-extended.asn \
-$AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/sargon/vizkit/VizkitPlugins.asn \
+$AUTOPROJ_CURRENT_ROOT/base/taste/asn1_types/asn/sargon/vizkit3d/Vizkit3D.asn \
 "
 
 echo "Updating DataView.aadl"
