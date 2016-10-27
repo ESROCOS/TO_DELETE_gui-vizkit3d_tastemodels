@@ -1,6 +1,6 @@
 # Window (title, geometry)
 window:
-    title: taste-vizkit3d
+    title: taste-vizkit3d - body state visualization test
     x: 100
     y: 150
 
