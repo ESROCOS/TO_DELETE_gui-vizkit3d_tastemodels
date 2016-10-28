@@ -16,9 +16,9 @@
 #  ORIGINAL MODEL AUTHOR:  -
 #
 # ..................................................................
-#  Install the cameraviz files.
+#  Install the taste/vizkit3d files.
 #  Usage:
-#  # build-tests.sh <CAMERAVIZ_DIR> <INSTALL_BASE_DIR>
+#  # install.sh <CAMERAVIZ_DIR> <INSTALL_BASE_DIR>
 # ..................................................................
 #  HISTORY
 #  $History$
@@ -30,11 +30,13 @@ exit_on_error() {
     rc=$?
     if [ $rc != 0 ] ; then
         echo "ERROR $rc" 1>&2
+        cd $OLD_DIR
         exit $rc
     fi
 }
 
 # Definitions
+OLD_DIR=`pwd`
 BASE_DIR=$1
 INSTALL_DIR=$2
 PACKAGE="taste/vizkit3d"
@@ -43,10 +45,12 @@ TARGET_DIR=$INSTALL_DIR/share/$PACKAGE
 
 echo "Installing $PACKAGE in $TARGET_DIR"
 
-mkdir -p $TARGET_DIR
-exit_on_error
+cd $BASE_DIR || exit_on_error
 
-cp $EXPORT_DIR/* $TARGET_DIR
-exit_on_error
+mkdir -p $TARGET_DIR || exit_on_error
+
+cp $EXPORT_DIR/* $TARGET_DIR || exit_on_error
+
+cd $OLD_DIR
 
 exit 0

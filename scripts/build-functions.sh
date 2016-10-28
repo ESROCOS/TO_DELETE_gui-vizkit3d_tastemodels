@@ -45,53 +45,41 @@ echo "[START] Building $PACKAGE in $FUNCTIONS_DIR"
 
 echo "[START] Body state visualization functions"
 
-cd $FUNCTIONS_DIR/bodystate
+cd $FUNCTIONS_DIR/bodystate || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh
-exit_on_error
-
-./copy-exports.sh
-exit_on_error
+DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+./copy-exports.sh || exit_on_error
 
 echo "[END] Body state visualization functions"
 echo "[START] Range visualization functions"
 
-cd $OLD_DIR
-cd $FUNCTIONS_DIR/range
+cd $OLD_DIR || exit_on_error
+cd $FUNCTIONS_DIR/range || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh
-exit_on_error
-
-./copy-exports.sh
-exit_on_error
+DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+./copy-exports.sh || exit_on_error
 
 echo "[END] Range visualization functions"
 echo "[START] Trajectory visualization functions"
 
-cd $OLD_DIR
-cd $FUNCTIONS_DIR/trajectory
+cd $OLD_DIR || exit_on_error
+cd $FUNCTIONS_DIR/trajectory || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh
-exit_on_error
-
-./copy-exports.sh
-exit_on_error
+DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+./copy-exports.sh || exit_on_error
 
 echo "[END] Trajectory visualization functions"
 echo "[START] Robot visualization functions"
 
-cd $OLD_DIR
-cd $FUNCTIONS_DIR/robot
+cd $OLD_DIR || exit_on_error
+cd $FUNCTIONS_DIR/robot || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh
-exit_on_error
-
-./copy-exports.sh
-exit_on_error
+DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+./copy-exports.sh || exit_on_error
 
 echo "[END] Robot visualization functions"
 
