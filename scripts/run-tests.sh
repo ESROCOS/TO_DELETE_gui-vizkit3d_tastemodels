@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # ======================================================================
 #  FILE:  $URL$
@@ -18,7 +18,7 @@
 # ..................................................................
 #  Run the cameraviz test.
 #  Usage:
-#  # build-tests.sh <CAMERAVIZ_DIR>
+#  # run-tests.sh <CAMERAVIZ_DIR>
 # ..................................................................
 #  HISTORY
 #  $History$
@@ -44,42 +44,60 @@ echo "[START] Running the $PACKAGE tests"
 
 echo "[START] Test of bodystate visualization functions"
 
-cd $BASE_DIR/functions/bodystate
-./make-links.sh
+cd $BASE_DIR/functions/bodystate || exit_on_error
+./make-links.sh || exit_on_error
 taskset -c 0 ./binary.c/binaries/x86_partition &
+PID=$!
 exit_on_error
-cd $OLD_DIR
+sleep 1
+read -n 1 -s -p "Press any key to end test"
+echo ""
+kill $PID
+cd $OLD_DIR || exit_on_error
 
 echo "[END] Test of bodystate visualization functions"
 echo "[START] Test of range visualization functions"
 
-cd $BASE_DIR/functions/range
-./make-links.sh
+cd $BASE_DIR/functions/range || exit_on_error
+./make-links.sh || exit_on_error
 taskset -c 0 ./binary.c/binaries/x86_partition &
+PID=$!
 exit_on_error
-cd $OLD_DIR
+sleep 1
+read -n 1 -s -p "Press any key to end test"
+echo ""
+kill $PID
+cd $OLD_DIR || exit_on_error
 
 echo "[END] Test of range visualization functions"
 echo "[START] Test of trajectory visualization functions"
 
-cd $BASE_DIR/functions/trajectory
-./make-links.sh
+cd $BASE_DIR/functions/trajectory || exit_on_error
+./make-links.sh || exit_on_error
 taskset -c 0 ./binary.c/binaries/x86_partition &
+PID=$!
 exit_on_error
-cd $OLD_DIR
+sleep 1
+read -n 1 -s -p "Press any key to end test"
+echo ""
+kill $PID
+cd $OLD_DIR || exit_on_error
 
 echo "[END] Test of trajectory visualization functions"
 echo "[START] Test of robot visualization functions"
 
-cd $BASE_DIR/functions/robot
-./make-links.sh
+cd $BASE_DIR/functions/robot || exit_on_error
+./make-links.sh || exit_on_error
 taskset -c 0 ./binary.c/binaries/x86_partition &
+PID=$!
 exit_on_error
-cd $OLD_DIR
+sleep 1
+read -n 1 -s -p "Press any key to end test"
+echo ""
+kill $PID
+cd $OLD_DIR || exit_on_error
 
 echo "[END] Test of robot visualization functions"
-
-echo "Close window and press Ctrl+C to end tests"
 
 cd $OLD_DIR
 
