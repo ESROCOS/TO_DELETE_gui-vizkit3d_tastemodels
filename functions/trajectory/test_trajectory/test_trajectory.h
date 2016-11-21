@@ -23,6 +23,14 @@ extern void test_trajectory_RI_updateMotionCommand(const asn1SccMotion2D *);
 
 extern void test_trajectory_RI_updatePose(const asn1SccPose *);
 
+extern void test_trajectory_RI_updateMotionCommand2(const asn1SccMotion2D *);
+
+extern void test_trajectory_RI_updatePose2(const asn1SccPose *);
+
+extern void test_trajectory_RI_updateWaypoint2(const asn1SccWaypoint *);
+
+extern void test_trajectory_RI_updateTrajectory2(const asn1SccVector3d *);
+
 #ifdef __cplusplus
 }
 #endif

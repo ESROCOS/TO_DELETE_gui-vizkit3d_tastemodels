@@ -34,24 +34,36 @@ END pc;
 SYSTEM IMPLEMENTATION pc.others
 SUBCOMPONENTS
   IV_vizkit_MotionCommand : SYSTEM interfaceview::IV::vizkit_MotionCommand.others {
-    Taste::coordinates => "518 790 1236 1036";
+    Taste::coordinates => "1564 1041 2282 1287";
     Taste::FunctionName => "vizkit_MotionCommand";
   };
   IV_vizkit_Waypoint : SYSTEM interfaceview::IV::vizkit_Waypoint.others {
-    Taste::coordinates => "1554 800 2180 1041";
+    Taste::coordinates => "1056 903 1682 1144";
     Taste::FunctionName => "vizkit_Waypoint";
   };
   IV_vizkit_Trajectory : SYSTEM interfaceview::IV::vizkit_Trajectory.others {
-    Taste::coordinates => "528 1200 1216 1436";
+    Taste::coordinates => "456 800 1144 1036";
     Taste::FunctionName => "vizkit_Trajectory";
   };
   IV_test_Trajectory : SYSTEM interfaceview::IV::test_Trajectory.others {
-    Taste::coordinates => "1472 1185 2072 1426";
+    Taste::coordinates => "1580 564 2180 805";
     Taste::FunctionName => "test_Trajectory";
+  };
+  IV_vizkit_Trajectory2 : SYSTEM interfaceview::IV::vizkit_Trajectory2.others {
+    Taste::coordinates => "498 1200 1093 1400";
+    Taste::FunctionName => "vizkit_Trajectory2";
+  };
+  IV_vizkit_MotionCommand2 : SYSTEM interfaceview::IV::vizkit_MotionCommand2.others {
+    Taste::coordinates => "1611 1369 2272 1595";
+    Taste::FunctionName => "vizkit_MotionCommand2";
+  };
+  IV_vizkit_Waypoint2 : SYSTEM interfaceview::IV::vizkit_Waypoint2.others {
+    Taste::coordinates => "1041 1349 1724 1539";
+    Taste::FunctionName => "vizkit_Waypoint2";
   };
   x86_partition : PROCESS deploymentview::DV::pc::x86_partition.others {
     Taste::coordinates => "400 533 2330 1616";
-    TASTE_DV_Properties::CoverageEnabled => true;
+    TASTE_DV_Properties::CoverageEnabled => TRUE;
     Deployment::Port_Number => 0;
   };
   x86_native : PROCESSOR ocarina_processors_x86::x86.native {
@@ -62,6 +74,9 @@ PROPERTIES
   Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Waypoint;
   Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Trajectory;
   Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_test_Trajectory;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Trajectory2;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_MotionCommand2;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Waypoint2;
   Actual_Processor_Binding => (reference (x86_native)) APPLIES TO x86_partition;
 END pc.others;
 

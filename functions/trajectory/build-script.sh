@@ -14,6 +14,12 @@
 # Note: TASTE will not overwrite your changes - if you need to update some parts
 #       you will have to merge the changes with the newly-created file.
 
+if [ -f user_init_pre.sh ]
+then
+    echo [INFO] Executing user-defined init script
+    source user_init_pre.sh
+fi
+
 if [ -z "$DEPLOYMENTVIEW" ]
 then
     DEPLOYMENTVIEW=DeploymentView.aadl
@@ -32,6 +38,12 @@ cd "$SKELS" && rm -f vizkit_waypoint.zip && zip vizkit_waypoint vizkit_waypoint/
 
 cd "$SKELS" && rm -f vizkit_motioncommand.zip && zip vizkit_motioncommand vizkit_motioncommand/* && cd $OLDPWD
 
+cd "$SKELS" && rm -f vizkit_trajectory2.zip && zip vizkit_trajectory2 vizkit_trajectory2/* && cd $OLDPWD
+
+cd "$SKELS" && rm -f vizkit_motioncommand2.zip && zip vizkit_motioncommand2 vizkit_motioncommand2/* && cd $OLDPWD
+
+cd "$SKELS" && rm -f vizkit_waypoint2.zip && zip vizkit_waypoint2 vizkit_waypoint2/* && cd $OLDPWD
+
 [ ! -z "$CLEANUP" ] && rm -rf binary
 
 if [ -f ConcurrencyView.pro ]
@@ -49,6 +61,13 @@ then
 else
     OUTPUTDIR=binary
 fi
+
+if [ -f user_init_post.sh ]
+then
+    echo [INFO] Executing user-defined init script
+    source user_init_post.sh
+fi
+
 assert-builder-ocarina.py \
         --no-retry \
 	--fast \
@@ -62,6 +81,9 @@ assert-builder-ocarina.py \
 	--subC vizkit_trajectory:"$SKELS"/vizkit_trajectory.zip \
 	--subC vizkit_waypoint:"$SKELS"/vizkit_waypoint.zip \
 	--subC vizkit_motioncommand:"$SKELS"/vizkit_motioncommand.zip \
+	--subC vizkit_trajectory2:"$SKELS"/vizkit_trajectory2.zip \
+	--subC vizkit_motioncommand2:"$SKELS"/vizkit_motioncommand2.zip \
+	--subC vizkit_waypoint2:"$SKELS"/vizkit_waypoint2.zip \
 	-e x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/include \
 	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libvizkit3d_c.so \
 	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libasn1_types_support.so \

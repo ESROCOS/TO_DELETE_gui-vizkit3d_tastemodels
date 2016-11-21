@@ -9,17 +9,20 @@
 #define MantBitMask  0x000FFFFFFFFFFFFFULL
 #define MantBitMask2 0xFFE0000000000000ULL
 
-void CalculateMantissaAndExponent(double d, int* exponent, asn1SccUint* mantissa)
+void CalculateMantissaAndExponent(double d, int* exponent, asn1SccUint64* mantissa)
 {
-    asn1SccUint* pl = NULL;
-    asn1SccUint ll = 0;
+    union {
+       double in;
+       asn1SccUint64 out;
+    } double2uint;
+
+    asn1SccUint64 ll = 0;
+
+    double2uint.in = d;
+    ll = double2uint.out;
 
     *exponent = 0;
     *mantissa = 0;
-
-    pl = (asn1SccUint*)&d;
-
-    ll = *pl;
 
     *exponent = (int)(((ll & ExpoBitMask)>>52) - 1023 - 52);
 
@@ -31,11 +34,11 @@ double GetDoubleByMantissaAndExp(asn1SccUint mantissa, int exponent)
 {
     union {
         double ret;
-        asn1SccUint u64;
+        asn1SccUint64 u64;
     } u;
-   
-    asn1SccUint ll = 0;
-    asn1SccUint exponent2 = 0; 
+
+    asn1SccUint64 ll = 0;
+    asn1SccUint64 exponent2 = 0;
 
     if (mantissa == 0)
         return 0.0;
@@ -51,7 +54,7 @@ double GetDoubleByMantissaAndExp(asn1SccUint mantissa, int exponent)
     }
 
 
-    exponent2 = (asn1SccUint)(exponent + 1023 + 52);
+    exponent2 = exponent + 1023 + 52;
 
 
     ll |= mantissa & MantBitMask;
@@ -66,11 +69,7 @@ double GetDoubleByMantissaAndExp(asn1SccUint mantissa, int exponent)
 
 #else
 
-#if WORD_SIZE==8
 #define MAX_MANTISSA 4503599627370496
-#else
-#define MAX_MANTISSA 2147483648
-#endif
 
 double pospow2[] = {
 1, 2, 4, 8, 16, 32, 64, 128, 
@@ -385,7 +384,7 @@ double myReal(asn1SccUint* mantissa, int exp)
 }
 
 
-void CalculateMantissaAndExponent(double d, int* exp, asn1SccUint* mantissa)
+void CalculateMantissaAndExponent(double d, int* exp, asn1SccUint64* mantissa)
 {
     double error;
     double dmantissa;
@@ -406,13 +405,13 @@ void CalculateMantissaAndExponent(double d, int* exp, asn1SccUint* mantissa)
         now mantissa has a value in the range [1..base)
     */
     dmantissa = d/mypow2(*exp);
-    *mantissa = (asn1SccUint)dmantissa;
+    *mantissa = (asn1SccUint64)dmantissa;
 
     error = fabs((double)(d-myReal(mantissa,*exp)))/d;
     while ( (*mantissa <= MAX_MANTISSA) && (error > DBL_EPSILON) && nCount--)
     {
         dmantissa *=2;
-        *mantissa = (asn1SccUint)dmantissa;
+        *mantissa = (asn1SccUint64)dmantissa;
         (*exp)--;
         error = fabs((double)(d-myReal(mantissa,*exp)))/d;
     }

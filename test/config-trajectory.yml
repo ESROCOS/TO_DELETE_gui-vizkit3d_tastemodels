@@ -24,4 +24,18 @@ plugins:
       name: Command
       FrontAxis: X
 
+    - type: TrajectoryVisualization
+      name: Trajectory2
+      MaxPoints: 2000
+      LineWidth: 5
+      Color: [0, 255, 0]
+
+    - type: WaypointVisualization
+      name: Waypoint2
+      Color: [255, 0, 0]
+
+    - type: MotionCommandVisualization
+      name: Command2
+      FrontAxis: X
+
     - type: GridVisualization

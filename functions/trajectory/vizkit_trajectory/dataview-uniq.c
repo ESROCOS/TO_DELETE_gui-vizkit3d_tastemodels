@@ -43,8 +43,8 @@ flag asn1SccVector6d_IsConstraintValid(const asn1SccVector6d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -74,8 +74,8 @@ flag asn1SccVector3d_IsConstraintValid(const asn1SccVector3d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -86,30 +86,6 @@ flag asn1SccVector3d_IsConstraintValid(const asn1SccVector3d* pVal, int* pErrCod
 	    ret = asn1SccT_Double_IsConstraintValid(&pVal->arr[i1], pErrCode);
 	    i1 = i1+1;
 	}
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccPosition_Initialize(asn1SccPosition* pVal)
-{
-    *pVal = (asn1SccPosition) {    .nCount = 1,    .arr = 
-    {
-        0.00000000000000000000E+000        
-    }
-};
-}
-#endif
-
- 
-flag asn1SccPosition_IsConstraintValid(const asn1SccPosition* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = asn1SccVector3d_IsConstraintValid(pVal, pErrCode);
 
 	return ret;
 }
@@ -149,6 +125,30 @@ flag asn1SccWaypoint_IsConstraintValid(const asn1SccWaypoint* pVal, int* pErrCod
 	        }
 	    }
 	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccPosition_Initialize(asn1SccPosition* pVal)
+{
+    *pVal = (asn1SccPosition) {    .nCount = 1,    .arr = 
+    {
+        0.00000000000000000000E+000        
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccPosition_IsConstraintValid(const asn1SccPosition* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccVector3d_IsConstraintValid(pVal, pErrCode);
 
 	return ret;
 }
@@ -196,8 +196,8 @@ flag asn1SccPointcloud_points_IsConstraintValid(const asn1SccPointcloud_points* 
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -227,8 +227,8 @@ flag asn1SccQuaterniond_IsConstraintValid(const asn1SccQuaterniond* pVal, int* p
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -317,8 +317,8 @@ flag asn1SccVectorXd_IsConstraintValid(const asn1SccVectorXd* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -348,8 +348,8 @@ flag asn1SccVector2d_IsConstraintValid(const asn1SccVector2d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -434,8 +434,8 @@ flag asn1SccVector4d_IsConstraintValid(const asn1SccVector4d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -469,8 +469,8 @@ flag asn1SccPointcloud_colors_IsConstraintValid(const asn1SccPointcloud_colors* 
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -500,8 +500,8 @@ flag asn1SccAngleAxisd_IsConstraintValid(const asn1SccAngleAxisd* pVal, int* pEr
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -531,8 +531,8 @@ flag asn1SccTransform3d_elm_IsConstraintValid(const asn1SccTransform3d_elm* pVal
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -566,8 +566,8 @@ flag asn1SccTransform3d_IsConstraintValid(const asn1SccTransform3d* pVal, int* p
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -597,8 +597,8 @@ flag asn1SccMatrix4d_elm_IsConstraintValid(const asn1SccMatrix4d_elm* pVal, int*
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -632,8 +632,8 @@ flag asn1SccMatrix4d_IsConstraintValid(const asn1SccMatrix4d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -663,8 +663,8 @@ flag asn1SccMatrix2d_elm_IsConstraintValid(const asn1SccMatrix2d_elm* pVal, int*
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -698,8 +698,8 @@ flag asn1SccMatrix2d_IsConstraintValid(const asn1SccMatrix2d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -729,8 +729,8 @@ flag asn1SccIsometry3d_elm_IsConstraintValid(const asn1SccIsometry3d_elm* pVal, 
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -764,8 +764,8 @@ flag asn1SccIsometry3d_IsConstraintValid(const asn1SccIsometry3d* pVal, int* pEr
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -795,8 +795,8 @@ flag asn1SccMatrixXd_elm_IsConstraintValid(const asn1SccMatrixXd_elm* pVal, int*
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -830,8 +830,8 @@ flag asn1SccMatrixXd_IsConstraintValid(const asn1SccMatrixXd* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -861,8 +861,8 @@ flag asn1SccMatrix3d_elm_IsConstraintValid(const asn1SccMatrix3d_elm* pVal, int*
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -896,8 +896,8 @@ flag asn1SccMatrix3d_IsConstraintValid(const asn1SccMatrix3d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -927,8 +927,8 @@ flag asn1SccMatrix6d_elm_IsConstraintValid(const asn1SccMatrix6d_elm* pVal, int*
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -962,8 +962,8 @@ flag asn1SccMatrix6d_IsConstraintValid(const asn1SccMatrix6d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1115,8 +1115,8 @@ flag asn1SccAffine3d_elm_IsConstraintValid(const asn1SccAffine3d_elm* pVal, int*
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1150,8 +1150,8 @@ flag asn1SccAffine3d_IsConstraintValid(const asn1SccAffine3d* pVal, int* pErrCod
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1161,33 +1161,6 @@ flag asn1SccAffine3d_IsConstraintValid(const asn1SccAffine3d* pVal, int* pErrCod
 	while (ret && (i1< pVal->nCount)) {
 	    ret = asn1SccAffine3d_elm_IsConstraintValid(&pVal->arr[i1], pErrCode);
 	    i1 = i1+1;
-	}
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccPoseUpdateThreshold_Initialize(asn1SccPoseUpdateThreshold* pVal)
-{
-    *pVal = (asn1SccPoseUpdateThreshold) {
-    .distance = 0.00000000000000000000E+000,
-    .angle = 0.00000000000000000000E+000
-};
-}
-#endif
-
- 
-flag asn1SccPoseUpdateThreshold_IsConstraintValid(const asn1SccPoseUpdateThreshold* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = asn1SccT_Double_IsConstraintValid(&pVal->distance, pErrCode);
-	if (ret) {
-	    ret = asn1SccT_Double_IsConstraintValid(&pVal->angle, pErrCode);
-	
 	}
 
 	return ret;
@@ -1208,8 +1181,8 @@ flag asn1SccDepthMap_horizontal_interval_IsConstraintValid(const asn1SccDepthMap
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1239,8 +1212,8 @@ flag asn1SccDepthMap_vertical_interval_IsConstraintValid(const asn1SccDepthMap_v
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1282,6 +1255,87 @@ flag asn1SccMotion2D_IsConstraintValid(const asn1SccMotion2D* pVal, int* pErrCod
 	return ret;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccPoseUpdateThreshold_Initialize(asn1SccPoseUpdateThreshold* pVal)
+{
+    *pVal = (asn1SccPoseUpdateThreshold) {
+    .distance = 0.00000000000000000000E+000,
+    .angle = 0.00000000000000000000E+000
+};
+}
+#endif
+
+ 
+flag asn1SccPoseUpdateThreshold_IsConstraintValid(const asn1SccPoseUpdateThreshold* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccT_Double_IsConstraintValid(&pVal->distance, pErrCode);
+	if (ret) {
+	    ret = asn1SccT_Double_IsConstraintValid(&pVal->angle, pErrCode);
+	
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccAngle_Initialize(asn1SccAngle* pVal)
+{
+    *pVal = (asn1SccAngle) {
+    .rad = 0.00000000000000000000E+000
+};
+}
+#endif
+
+ 
+flag asn1SccAngle_IsConstraintValid(const asn1SccAngle* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccT_Double_IsConstraintValid(&pVal->rad, pErrCode);
+
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccAngleSegment_Initialize(asn1SccAngleSegment* pVal)
+{
+    *pVal = (asn1SccAngleSegment) {
+    .width = 0.00000000000000000000E+000,
+    .startRad = 0.00000000000000000000E+000,
+    .endRad = 0.00000000000000000000E+000
+};
+}
+#endif
+
+ 
+flag asn1SccAngleSegment_IsConstraintValid(const asn1SccAngleSegment* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccT_Double_IsConstraintValid(&pVal->width, pErrCode);
+	if (ret) {
+	    ret = asn1SccT_Double_IsConstraintValid(&pVal->startRad, pErrCode);
+	    if (ret) {
+	        ret = asn1SccT_Double_IsConstraintValid(&pVal->endRad, pErrCode);
+	    
+	    }
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
 void asn1SccT_Float_Initialize(asn1SccT_Float* pVal)
 {
     *pVal = (asn1SccT_Float) 0.00000000000000000000E+000;
@@ -1318,8 +1372,8 @@ flag asn1SccDepthMap_remissions_IsConstraintValid(const asn1SccDepthMap_remissio
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1349,8 +1403,8 @@ flag asn1SccDepthMap_distances_IsConstraintValid(const asn1SccDepthMap_distances
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1359,6 +1413,76 @@ flag asn1SccDepthMap_distances_IsConstraintValid(const asn1SccDepthMap_distances
 	i1 = 0;
 	while (ret && (i1< pVal->nCount)) {
 	    ret = asn1SccT_Float_IsConstraintValid(&pVal->arr[i1], pErrCode);
+	    i1 = i1+1;
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccJointState_Initialize(asn1SccJointState* pVal)
+{
+    *pVal = (asn1SccJointState) {
+    .position = 0.00000000000000000000E+000,
+    .speed = 0.00000000000000000000E+000,
+    .effort = 0.00000000000000000000E+000,
+    .raw = 0.00000000000000000000E+000,
+    .acceleration = 0.00000000000000000000E+000
+};
+}
+#endif
+
+ 
+flag asn1SccJointState_IsConstraintValid(const asn1SccJointState* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccT_Double_IsConstraintValid(&pVal->position, pErrCode);
+	if (ret) {
+	    ret = asn1SccT_Float_IsConstraintValid(&pVal->speed, pErrCode);
+	    if (ret) {
+	        ret = asn1SccT_Float_IsConstraintValid(&pVal->effort, pErrCode);
+	        if (ret) {
+	            ret = asn1SccT_Float_IsConstraintValid(&pVal->raw, pErrCode);
+	            if (ret) {
+	                ret = asn1SccT_Float_IsConstraintValid(&pVal->acceleration, pErrCode);
+	            
+	            }
+	        }
+	    }
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccJoints_elements_Initialize(asn1SccJoints_elements* pVal)
+{
+    *pVal = (asn1SccJoints_elements) {    .nCount = 0,    .arr = 
+    {
+        
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccJoints_elements_IsConstraintValid(const asn1SccJoints_elements* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	int i1=0;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (0 <= pVal->nCount && pVal->nCount <= jointsElementsMax);
+	*pErrCode = ret ? 0 : ERR_asn1SccJoints_elements;
+	i1 = 0;
+	while (ret && (i1< pVal->nCount)) {
+	    ret = asn1SccJointState_IsConstraintValid(&pVal->arr[i1], pErrCode);
 	    i1 = i1+1;
 	}
 
@@ -1380,8 +1504,8 @@ flag asn1SccLaserScan_remission_IsConstraintValid(const asn1SccLaserScan_remissi
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1482,9 +1606,8 @@ flag asn1SccT_Int64_IsConstraintValid(const asn1SccT_Int64* pVal, int* pErrCode)
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
 void asn1SccT_String_Initialize(asn1SccT_String* pVal)
 {
-    *pVal = (asn1SccT_String) {1,
+    *pVal = (asn1SccT_String) {0,
     {
-        0x00
     }
 };
 }
@@ -1499,8 +1622,60 @@ flag asn1SccT_String_IsConstraintValid(const asn1SccT_String* pVal, int* pErrCod
 
 	(void)pVal;
 
-	ret = (1 <= pVal->nCount && pVal->nCount <= 256);
+	ret = (0 <= pVal->nCount && pVal->nCount <= maxSize_T_String);
 	*pErrCode = ret ? 0 : ERR_asn1SccT_String;
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccJoints_names_Initialize(asn1SccJoints_names* pVal)
+{
+    *pVal = (asn1SccJoints_names) {    .nCount = 0,    .arr = 
+    {
+        
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccJoints_names_IsConstraintValid(const asn1SccJoints_names* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	int i1=0;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (0 <= pVal->nCount && pVal->nCount <= jointsElementsMax);
+	*pErrCode = ret ? 0 : ERR_asn1SccJoints_names;
+	i1 = 0;
+	while (ret && (i1< pVal->nCount)) {
+	    ret = asn1SccT_String_IsConstraintValid(&pVal->arr[i1], pErrCode);
+	    i1 = i1+1;
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccResolution_Initialize(asn1SccResolution* pVal)
+{
+    *pVal = (asn1SccResolution) asn1Sccseconds;
+}
+#endif
+
+ 
+flag asn1SccResolution_IsConstraintValid(const asn1SccResolution* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (((*pVal == asn1Sccseconds) || (*pVal == asn1Sccmilliseconds)) || (*pVal == asn1Sccmicroseconds));
+	*pErrCode = ret ? 0 : ERR_asn1SccResolution;
 
 	return ret;
 }
@@ -1568,6 +1743,73 @@ flag asn1SccPROJECTION_TYPE_IsConstraintValid(const asn1SccPROJECTION_TYPE* pVal
 	return ret;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccVizkitFilePath_Initialize(asn1SccVizkitFilePath pVal)
+{
+    static asn1SccVizkitFilePath ret = 
+        "";
+    strcpy(pVal, ret);
+}
+#endif
+
+ 
+flag asn1SccVizkitFilePath_IsConstraintValid(const asn1SccVizkitFilePath pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (0 <= strlen(pVal) && strlen(pVal) <= 255);
+	*pErrCode = ret ? 0 : ERR_asn1SccVizkitFilePath;
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccVizkitPluginLabel_Initialize(asn1SccVizkitPluginLabel pVal)
+{
+    static asn1SccVizkitPluginLabel ret = 
+        " ";
+    strcpy(pVal, ret);
+}
+#endif
+
+ 
+flag asn1SccVizkitPluginLabel_IsConstraintValid(const asn1SccVizkitPluginLabel pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (1 <= strlen(pVal) && strlen(pVal) <= 31);
+	*pErrCode = ret ? 0 : ERR_asn1SccVizkitPluginLabel;
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccLASER_RANGE_ERRORS_Initialize(asn1SccLASER_RANGE_ERRORS* pVal)
+{
+    *pVal = (asn1SccLASER_RANGE_ERRORS) asn1SccLASER_RANGE_ERRORS_too_far;
+}
+#endif
+
+ 
+flag asn1SccLASER_RANGE_ERRORS_IsConstraintValid(const asn1SccLASER_RANGE_ERRORS* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = ((((((*pVal == asn1SccLASER_RANGE_ERRORS_too_far) || (*pVal == asn1SccLASER_RANGE_ERRORS_too_near)) || (*pVal == asn1SccLASER_RANGE_ERRORS_measurement_error)) || (*pVal == asn1Sccother_range_errors)) || (*pVal == asn1Sccmax_range_error)) || (*pVal == asn1Sccend_laser_range_errors));
+	*pErrCode = ret ? 0 : ERR_asn1SccLASER_RANGE_ERRORS;
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
 void asn1SccT_Int32_Initialize(asn1SccT_Int32* pVal)
 {
     *pVal = (asn1SccT_Int32) -2147483648LL;
@@ -1616,90 +1858,6 @@ flag asn1SccTime_IsConstraintValid(const asn1SccTime* pVal, int* pErrCode)
 	return ret;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccDepthMap_timestamps_Initialize(asn1SccDepthMap_timestamps* pVal)
-{
-    *pVal = (asn1SccDepthMap_timestamps) {    .nCount = 1,    .arr = 
-    {
-        {
-            .microseconds = -9223372036854775807LL,
-            .usecPerSec = -2147483648LL
-        }        
-    }
-};
-}
-#endif
-
- 
-flag asn1SccDepthMap_timestamps_IsConstraintValid(const asn1SccDepthMap_timestamps* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-	int i1=0;
-
-	(void)pVal;
-
-	ret = (1 <= pVal->nCount && pVal->nCount <= 60);
-	*pErrCode = ret ? 0 : ERR_asn1SccDepthMap_timestamps;
-	i1 = 0;
-	while (ret && (i1< pVal->nCount)) {
-	    ret = asn1SccTime_IsConstraintValid(&pVal->arr[i1], pErrCode);
-	    i1 = i1+1;
-	}
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccPointcloud_Initialize(asn1SccPointcloud* pVal)
-{
-    *pVal = (asn1SccPointcloud) {
-    .a_time = {
-        .microseconds = -9223372036854775807LL,
-        .usecPerSec = -2147483648LL
-    },
-    .points = {    .nCount = 1,    .arr = 
-        {
-            {    .nCount = 1,    .arr = 
-                {
-                    0.00000000000000000000E+000        
-                }
-            }        
-        }
-    },
-    .colors = {    .nCount = 1,    .arr = 
-        {
-            {    .nCount = 1,    .arr = 
-                {
-                    0.00000000000000000000E+000        
-                }
-            }        
-        }
-    }
-};
-}
-#endif
-
- 
-flag asn1SccPointcloud_IsConstraintValid(const asn1SccPointcloud* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = asn1SccTime_IsConstraintValid(&pVal->a_time, pErrCode);
-	if (ret) {
-	    ret = asn1SccPointcloud_points_IsConstraintValid(&pVal->points, pErrCode);
-	    if (ret) {
-	        ret = asn1SccPointcloud_colors_IsConstraintValid(&pVal->colors, pErrCode);
-	    
-	    }
-	}
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
 void asn1SccRigidBodyState_Initialize(asn1SccRigidBodyState* pVal)
 {
     *pVal = (asn1SccRigidBodyState) {
@@ -1707,14 +1865,12 @@ void asn1SccRigidBodyState_Initialize(asn1SccRigidBodyState* pVal)
         .microseconds = -9223372036854775807LL,
         .usecPerSec = -2147483648LL
     },
-    .sourceFrame = {1,
+    .sourceFrame = {0,
         {
-            0x00
         }
     },
-    .targetFrame = {1,
+    .targetFrame = {0,
         {
-            0x00
         }
     },
     .a_position = {    .nCount = 1,    .arr = 
@@ -1822,6 +1978,132 @@ flag asn1SccRigidBodyState_IsConstraintValid(const asn1SccRigidBodyState* pVal, 
 	return ret;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccDepthMap_timestamps_Initialize(asn1SccDepthMap_timestamps* pVal)
+{
+    *pVal = (asn1SccDepthMap_timestamps) {    .nCount = 1,    .arr = 
+    {
+        {
+            .microseconds = -9223372036854775807LL,
+            .usecPerSec = -2147483648LL
+        }        
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccDepthMap_timestamps_IsConstraintValid(const asn1SccDepthMap_timestamps* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	int i1=0;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (1 <= pVal->nCount && pVal->nCount <= 60);
+	*pErrCode = ret ? 0 : ERR_asn1SccDepthMap_timestamps;
+	i1 = 0;
+	while (ret && (i1< pVal->nCount)) {
+	    ret = asn1SccTime_IsConstraintValid(&pVal->arr[i1], pErrCode);
+	    i1 = i1+1;
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccJoints_Initialize(asn1SccJoints* pVal)
+{
+    *pVal = (asn1SccJoints) {
+    .timestamp = {
+        .microseconds = -9223372036854775807LL,
+        .usecPerSec = -2147483648LL
+    },
+    .names = {    .nCount = 0,    .arr = 
+        {
+            
+        }
+    },
+    .elements = {    .nCount = 0,    .arr = 
+        {
+            
+        }
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccJoints_IsConstraintValid(const asn1SccJoints* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccTime_IsConstraintValid(&pVal->timestamp, pErrCode);
+	if (ret) {
+	    ret = asn1SccJoints_names_IsConstraintValid(&pVal->names, pErrCode);
+	    if (ret) {
+	        ret = asn1SccJoints_elements_IsConstraintValid(&pVal->elements, pErrCode);
+	    
+	    }
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccPointcloud_Initialize(asn1SccPointcloud* pVal)
+{
+    *pVal = (asn1SccPointcloud) {
+    .a_time = {
+        .microseconds = -9223372036854775807LL,
+        .usecPerSec = -2147483648LL
+    },
+    .points = {    .nCount = 1,    .arr = 
+        {
+            {    .nCount = 1,    .arr = 
+                {
+                    0.00000000000000000000E+000        
+                }
+            }        
+        }
+    },
+    .colors = {    .nCount = 1,    .arr = 
+        {
+            {    .nCount = 1,    .arr = 
+                {
+                    0.00000000000000000000E+000        
+                }
+            }        
+        }
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccPointcloud_IsConstraintValid(const asn1SccPointcloud* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccTime_IsConstraintValid(&pVal->a_time, pErrCode);
+	if (ret) {
+	    ret = asn1SccPointcloud_points_IsConstraintValid(&pVal->points, pErrCode);
+	    if (ret) {
+	        ret = asn1SccPointcloud_colors_IsConstraintValid(&pVal->colors, pErrCode);
+	    
+	    }
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
 void asn1SccBodyState_Initialize(asn1SccBodyState* pVal)
 {
     *pVal = (asn1SccBodyState) {
@@ -1911,8 +2193,8 @@ flag asn1SccLaserScan_ranges_IsConstraintValid(const asn1SccLaserScan_ranges* pV
 {
     
     flag ret = TRUE;
-	*pErrCode=0;
 	int i1=0;
+	*pErrCode=0;
 
 	(void)pVal;
 
@@ -1922,33 +2204,6 @@ flag asn1SccLaserScan_ranges_IsConstraintValid(const asn1SccLaserScan_ranges* pV
 	while (ret && (i1< pVal->nCount)) {
 	    ret = asn1SccT_Int32_IsConstraintValid(&pVal->arr[i1], pErrCode);
 	    i1 = i1+1;
-	}
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccTrajectory_Initialize(asn1SccTrajectory* pVal)
-{
-    *pVal = (asn1SccTrajectory) {
-    .speed = 0.00000000000000000000E+000,
-    .spline = -2147483648LL
-};
-}
-#endif
-
- 
-flag asn1SccTrajectory_IsConstraintValid(const asn1SccTrajectory* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = asn1SccT_Double_IsConstraintValid(&pVal->speed, pErrCode);
-	if (ret) {
-	    ret = asn1SccT_Int32_IsConstraintValid(&pVal->spline, pErrCode);
-	
 	}
 
 	return ret;
@@ -2199,6 +2454,93 @@ flag asn1SccT_UInt8_IsConstraintValid(const asn1SccT_UInt8* pVal, int* pErrCode)
 	return ret;
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccSonarBeam_beam_Initialize(asn1SccSonarBeam_beam* pVal)
+{
+    *pVal = (asn1SccSonarBeam_beam) {    .nCount = 1,    .arr = 
+    {
+        0        
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccSonarBeam_beam_IsConstraintValid(const asn1SccSonarBeam_beam* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	int i1=0;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = (1 <= pVal->nCount && pVal->nCount <= 60);
+	*pErrCode = ret ? 0 : ERR_asn1SccSonarBeam_beam;
+	i1 = 0;
+	while (ret && (i1< pVal->nCount)) {
+	    ret = asn1SccT_UInt8_IsConstraintValid(&pVal->arr[i1], pErrCode);
+	    i1 = i1+1;
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
+void asn1SccSonarBeam_Initialize(asn1SccSonarBeam* pVal)
+{
+    *pVal = (asn1SccSonarBeam) {
+    .a_time = {
+        .microseconds = -9223372036854775807LL,
+        .usecPerSec = -2147483648LL
+    },
+    .bearing = {
+        .rad = 0.00000000000000000000E+000
+    },
+    .sampling_interval = 0.00000000000000000000E+000,
+    .speed_of_sound = 0.00000000000000000000E+000,
+    .beamwidth_horizontal = 0.00000000000000000000E+000,
+    .beamwidth_vertical = 0.00000000000000000000E+000,
+    .beam = {    .nCount = 1,    .arr = 
+        {
+            0        
+        }
+    }
+};
+}
+#endif
+
+ 
+flag asn1SccSonarBeam_IsConstraintValid(const asn1SccSonarBeam* pVal, int* pErrCode)
+{
+    
+    flag ret = TRUE;
+	*pErrCode=0;
+
+	(void)pVal;
+
+	ret = asn1SccTime_IsConstraintValid(&pVal->a_time, pErrCode);
+	if (ret) {
+	    ret = asn1SccAngle_IsConstraintValid(&pVal->bearing, pErrCode);
+	    if (ret) {
+	        ret = asn1SccT_Double_IsConstraintValid(&pVal->sampling_interval, pErrCode);
+	        if (ret) {
+	            ret = asn1SccT_Float_IsConstraintValid(&pVal->speed_of_sound, pErrCode);
+	            if (ret) {
+	                ret = asn1SccT_Float_IsConstraintValid(&pVal->beamwidth_horizontal, pErrCode);
+	                if (ret) {
+	                    ret = asn1SccT_Float_IsConstraintValid(&pVal->beamwidth_vertical, pErrCode);
+	                    if (ret) {
+	                        ret = asn1SccSonarBeam_beam_IsConstraintValid(&pVal->beam, pErrCode);
+	                    
+	                    }
+	                }
+	            }
+	        }
+	    }
+	}
+
+	return ret;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1800
 void asn1SccT_Boolean_Initialize(asn1SccT_Boolean* pVal)
 {
     *pVal = (asn1SccT_Boolean) FALSE;
@@ -2218,92 +2560,9 @@ flag asn1SccT_Boolean_IsConstraintValid(const asn1SccT_Boolean* pVal, int* pErrC
 
 	return ret;
 }
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccResolution_Initialize(asn1SccResolution* pVal)
-{
-    *pVal = (asn1SccResolution) asn1Sccseconds;
-}
-#endif
 
- 
-flag asn1SccResolution_IsConstraintValid(const asn1SccResolution* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
+const asn1SccT_UInt32 maxSize_T_String = 256;
 
-	(void)pVal;
+const asn1SccT_UInt32 jointsNameLength = 30;
 
-	ret = (((*pVal == asn1Sccseconds) || (*pVal == asn1Sccmilliseconds)) || (*pVal == asn1Sccmicroseconds));
-	*pErrCode = ret ? 0 : ERR_asn1SccResolution;
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccLASER_RANGE_ERRORS_Initialize(asn1SccLASER_RANGE_ERRORS* pVal)
-{
-    *pVal = (asn1SccLASER_RANGE_ERRORS) asn1SccLASER_RANGE_ERRORS_too_far;
-}
-#endif
-
- 
-flag asn1SccLASER_RANGE_ERRORS_IsConstraintValid(const asn1SccLASER_RANGE_ERRORS* pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = ((((((*pVal == asn1SccLASER_RANGE_ERRORS_too_far) || (*pVal == asn1SccLASER_RANGE_ERRORS_too_near)) || (*pVal == asn1SccLASER_RANGE_ERRORS_measurement_error)) || (*pVal == asn1Sccother_range_errors)) || (*pVal == asn1Sccmax_range_error)) || (*pVal == asn1Sccend_laser_range_errors));
-	*pErrCode = ret ? 0 : ERR_asn1SccLASER_RANGE_ERRORS;
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccVizkitFilePath_Initialize(asn1SccVizkitFilePath pVal)
-{
-    static asn1SccVizkitFilePath ret = 
-        "";
-    strcpy(pVal, ret);
-}
-#endif
-
- 
-flag asn1SccVizkitFilePath_IsConstraintValid(const asn1SccVizkitFilePath pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = (0 <= strlen(pVal) && strlen(pVal) <= 255);
-	*pErrCode = ret ? 0 : ERR_asn1SccVizkitFilePath;
-
-	return ret;
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
-void asn1SccVizkitPluginLabel_Initialize(asn1SccVizkitPluginLabel pVal)
-{
-    static asn1SccVizkitPluginLabel ret = 
-        " ";
-    strcpy(pVal, ret);
-}
-#endif
-
- 
-flag asn1SccVizkitPluginLabel_IsConstraintValid(const asn1SccVizkitPluginLabel pVal, int* pErrCode)
-{
-    
-    flag ret = TRUE;
-	*pErrCode=0;
-
-	(void)pVal;
-
-	ret = (1 <= strlen(pVal) && strlen(pVal) <= 31);
-	*pErrCode = ret ? 0 : ERR_asn1SccVizkitPluginLabel;
-
-	return ret;
-}
-
+const asn1SccT_UInt32 jointsElementsMax = 30;
