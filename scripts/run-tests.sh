@@ -16,9 +16,9 @@
 #  ORIGINAL MODEL AUTHOR:  -
 #
 # ..................................................................
-#  Run the cameraviz test.
+#  Run the taste/vizkit3d tests.
 #  Usage:
-#  # run-tests.sh <CAMERAVIZ_DIR>
+#  # run-tests.sh <TASTE_VIZKIT3D_DIR>
 # ..................................................................
 #  HISTORY
 #  $History$
