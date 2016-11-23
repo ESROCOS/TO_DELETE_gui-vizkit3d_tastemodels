@@ -9,6 +9,8 @@ functions/bodystate/stim300.stl
 functions/range/sargon.png
 functions/range/sonar_beam.data
 functions/robot/spacebot_arm*
-functions/*/coverage.info
-functions/*/coverage
+functions/*/build-log.txt
+functions/*/run-log.txt
+coverage.info
+coverage
 export
