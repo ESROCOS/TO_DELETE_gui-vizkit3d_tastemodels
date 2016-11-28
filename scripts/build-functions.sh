@@ -48,7 +48,7 @@ echo "[START] Body state visualization functions"
 cd $FUNCTIONS_DIR/bodystate || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+DISABLE_MULTICORE_CHECK=1 USE_POHIC=1 ./build-script.sh || exit_on_error
 ./copy-exports.sh || exit_on_error
 
 echo "[END] Body state visualization functions"
@@ -58,7 +58,7 @@ cd $OLD_DIR || exit_on_error
 cd $FUNCTIONS_DIR/range || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+DISABLE_MULTICORE_CHECK=1 USE_POHIC=1 ./build-script.sh || exit_on_error
 ./copy-exports.sh || exit_on_error
 
 echo "[END] Range visualization functions"
@@ -68,7 +68,7 @@ cd $OLD_DIR || exit_on_error
 cd $FUNCTIONS_DIR/trajectory || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+DISABLE_MULTICORE_CHECK=1 USE_POHIC=1 ./build-script.sh || exit_on_error
 ./copy-exports.sh || exit_on_error
 
 echo "[END] Trajectory visualization functions"
@@ -78,7 +78,7 @@ cd $OLD_DIR || exit_on_error
 cd $FUNCTIONS_DIR/robot || exit_on_error
 
 echo "Running TASTE build script..."
-DISABLE_MULTICORE_CHECK=1 USEPOHIC=1 ./build-script.sh || exit_on_error
+DISABLE_MULTICORE_CHECK=1 USE_POHIC=1 ./build-script.sh || exit_on_error
 ./copy-exports.sh || exit_on_error
 
 echo "[END] Robot visualization functions"
