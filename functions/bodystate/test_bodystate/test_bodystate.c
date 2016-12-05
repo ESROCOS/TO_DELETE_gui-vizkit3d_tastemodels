@@ -24,7 +24,7 @@ void test_bodystate_startup()
 void test_bodystate_PI_trigger()
 {
     // Update RigidBodyState
-    rbs.a_orientation = Orientation_angleAxis( i * M_PI / 180.0, &xAxis);
+    rbs.orient = Orientation_angleAxis( i * M_PI / 180.0, &xAxis);
     test_bodystate_RI_updateRigidBodyState(&rbs);
 
     // Update BodyState

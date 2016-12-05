@@ -34,10 +34,10 @@ void test_trajectory_startup()
     cmd.rotation = 0.0;
     
     zAxis = Vector3d_create(0.0, 0.0, 1.0);
-    pose.a_position = Vector3d_create(0.0, 0.0, 0.0);
-    pose.a_orientation =  Orientation_angleAxis(M_PI / 3.0, &zAxis);
-    pose2.a_position = Vector3d_create(0.0, 0.0, 0.0);
-    pose2.a_orientation =  Orientation_angleAxis(-M_PI / 3.0, &zAxis);
+    pose.pos = Vector3d_create(0.0, 0.0, 0.0);
+    pose.orient =  Orientation_angleAxis(M_PI / 3.0, &zAxis);
+    pose2.pos = Vector3d_create(0.0, 0.0, 0.0);
+    pose2.orient =  Orientation_angleAxis(-M_PI / 3.0, &zAxis);
 }
 
 void test_trajectory_PI_trigger()
@@ -58,8 +58,8 @@ void test_trajectory_PI_trigger()
     // Motion command
     if (0 == i % 100)
     {
-        pose.a_position.arr[0] = i/100.0;
-        pose.a_position.arr[1] = i/50.0;
+        pose.pos.arr[0] = i/100.0;
+        pose.pos.arr[1] = i/50.0;
         test_trajectory_RI_updateMotionCommand(&cmd);
         test_trajectory_RI_updatePose(&pose);
     }
@@ -80,8 +80,8 @@ void test_trajectory_PI_trigger()
     // Motion command 2
     if (0 == i % 100)
     {
-        pose2.a_position.arr[0] = i/100.0;
-        pose2.a_position.arr[1] = -i/50.0;
+        pose2.pos.arr[0] = i/100.0;
+        pose2.pos.arr[1] = -i/50.0;
         test_trajectory_RI_updateMotionCommand2(&cmd);
         test_trajectory_RI_updatePose2(&pose2);
     }

@@ -38,7 +38,7 @@ void test_robot_startup()
 void test_robot_PI_trigger()
 {
     // Update RigidBodyState
-    rbs.a_orientation = Orientation_angleAxis( i * M_PI * 0.2 / 180.0, &xAxis);
+    rbs.orient = Orientation_angleAxis( i * M_PI * 0.2 / 180.0, &xAxis);
     test_robot_RI_updateRigidBodyState(&rbs);
 
     // Update Joints

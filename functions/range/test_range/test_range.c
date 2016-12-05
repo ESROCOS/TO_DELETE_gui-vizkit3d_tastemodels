@@ -52,7 +52,7 @@ void test_range_startup()
     scan.maxRange = 1000.0;
     
     // Sonar beam
-    sonarPose.a_orientation = Orientation_create(0.707, 0.0, 0.707, 0.0);
+    sonarPose.orient = Orientation_create(0.707, 0.0, 0.707, 0.0);
     size_t count = readSonarBeamFile(sonarDataFile, sonarData, maxSonarData);
     if (count > 0)
     {
@@ -107,7 +107,7 @@ void test_range_PI_trigger()
     }
 
     // Pose
-    pose.a_orientation = Orientation_angleAxis(i*M_PI/180.0, &zAxis);
+    pose.orient = Orientation_angleAxis(i*M_PI/180.0, &zAxis);
     test_range_RI_updatePose_DM(&pose);
     test_range_RI_updatePose_LS(&pose);
 
