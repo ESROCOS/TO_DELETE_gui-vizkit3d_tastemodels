@@ -41,7 +41,9 @@ mkdir -p $EXPORT_DIR
 
 cp export_vizkit_Trajectory.aadl \
    export_vizkit_Waypoint.aadl \
+   export_vizkit_MotionCommand.aadl \
    vizkit_trajectory.zip \
    vizkit_waypoint.zip \
+   vizkit_motioncommand.zip \
    ../../scripts/update-data-view.sh \
    $EXPORT_DIR
