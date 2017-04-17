@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- AADL2.0
 -- TASTE
--- (c)Ellidiss Technologies
+-- 
 -- 
 ---------------------------------------------------
 
@@ -28,6 +28,8 @@ FEATURES
   joints : IN PARAMETER DataView::Joints {
     Taste::encoding => NATIVE;
   };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
 END PI_updateJoints;
 
 SUBPROGRAM IMPLEMENTATION PI_updateJoints.others
@@ -90,8 +92,10 @@ FEATURES
     Taste::InterfaceName => "updateRigidBodyState";
   };
   PI_updateJoints : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Robot::PI_updateJoints.others {
-    Taste::coordinates => "1433 613";
+    Taste::coordinates => "1432 613";
     Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updateJoints";
   };
 PROPERTIES
@@ -139,7 +143,7 @@ FEATURES
     Taste::labelInheritance => "true";
   };
 PROPERTIES
-  Source_Language => (C);
+  Source_Language => (CPP);
 END test_Robot;
 
 SYSTEM IMPLEMENTATION test_Robot.others
@@ -178,7 +182,7 @@ PROPERTIES
   Taste::dataView => ("DataView");
   Taste::dataViewPath => ("DataView.aadl");
   Taste::coordinates => "0 0 2970 2100";
-  Taste::version => "1.3.17";
+  Taste::version => "1.3.18";
 END interfaceview::IV;
 
 PACKAGE interfaceview::FV

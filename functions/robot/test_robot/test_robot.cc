@@ -27,8 +27,8 @@ void test_robot_startup()
     jz.speed = 0;
     
     joints.names.nCount = 2;
-    String_fromC(&joints.names.arr[0], "joint_3");
-    String_fromC(&joints.names.arr[1], "joint_4");
+    StringN_fromC(&joints.names.arr[0], "joint_3", jointsNameLength);
+    StringN_fromC(&joints.names.arr[1], "joint_4", jointsNameLength);
     
     joints.elements.nCount = 2;
     joints.elements.arr[0] = jz;

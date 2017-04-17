@@ -1,40 +1,66 @@
 #!/bin/bash
 
-# This script will build your TASTE system.
+# This script will build your TASTE system (by default with the C runtime).
 
-# You should check it before running it to make it fit with your context:
-# 1) You may need to fix some paths and filenames (path to interface/deployment views)
-# 2) You may need to specify additional paths for the compiler to find .h file
-#    (e.g. "export C_INCLUDE_PATH=/usr/include/xenomai/analogy/:$C_INCLUDE_PATH")
-# 3) You may need to link with pre-built libraries, using the -l option
-#    (e.g. -l /usr/lib/libanalogy.a,/usr/lib/librtdm.a)
-# 4) You may need to change the runtime (add -p flag to select PolyORB-HI-C)
-# etc.
+# You should not change this file as it was automatically generated.
 
-# Note: TASTE will not overwrite your changes - if you need to update some parts
-#       you will have to merge the changes with the newly-created file.
+# If you need additional preprocessing, create a file named 'user_init_pre.sh'
+# and/or 'user_init_post.sh - They will never get overwritten.'
+
+# Inside these files you may set some environment variables:
+#    C_INCLUDE_PATH=/usr/include/xenomai/analogy/:$C_INCLUDE_PATH
+#    unset USE_POHIC   
+
+CWD=$(pwd)
+
+if [ -t 0 ] ; then
+    COLORON="\e[1m\e[32m"
+    COLOROFF="\e[0m"
+else
+    COLORON=""
+    COLOROFF=""
+fi
+INFO="${COLORON}[INFO]${COLOROFF}"
 
 if [ -f user_init_pre.sh ]
 then
-    echo [INFO] Executing user-defined init script
+    echo -e "${INFO} Executing user-defined init script"
     source user_init_pre.sh
 fi
+
+# Use PolyORB-HI-C runtime
+USE_POHIC=1
+
+# Detect models from Ellidiss tools v2, and convert them to 1.3
+INTERFACEVIEW=InterfaceView.aadl
+grep "version => \"2" InterfaceView.aadl >/dev/null && {
+    echo -e "${INFO} Converting interface view from V2 to V1.3"
+    TASTE --load-interface-view InterfaceView.aadl --export-interface-view-to-1_3 __iv_1_3.aadl
+    INTERFACEVIEW=__iv_1_3.aadl
+};
 
 if [ -z "$DEPLOYMENTVIEW" ]
 then
     DEPLOYMENTVIEW=DeploymentView.aadl
 fi
 
+# Detect models from Ellidiss tools v2, and convert them to 1.3
+grep "version => \"2" "$DEPLOYMENTVIEW" >/dev/null && {
+    echo -e "${INFO} Converting deployment view from V2 to V1.3"
+    TASTE --load-deployment-view "$DEPLOYMENTVIEW" --export-deployment-view-to-1_3 __dv_1_3.aadl
+    DEPLOYMENTVIEW=__dv_1_3.aadl
+};
+
 SKELS="./"
 
 # Update the data view with local paths
-../../scripts/update-data-view.sh
+taste-update-data-view
 
 cd "$SKELS" && rm -f vizkit_robot.zip && zip vizkit_robot vizkit_robot/* && cd $OLDPWD
 
 cd "$SKELS" && rm -f test_robot.zip && zip test_robot test_robot/* && cd $OLDPWD
 
-[ ! -z "$CLEANUP" ] && rm -rf binary
+[ ! -z "$CLEANUP" ] && rm -rf binary*
 
 if [ -f ConcurrencyView.pro ]
 then
@@ -54,22 +80,18 @@ fi
 
 if [ -f user_init_post.sh ]
 then
-    echo [INFO] Executing user-defined init script
+    echo -e "${INFO} Executing user-defined init script"
     source user_init_post.sh
 fi
 
-assert-builder-ocarina.py \
-        --no-retry \
+cd "$CWD" && assert-builder-ocarina.py \
 	--fast \
 	--debug \
 	--aadlv2 \
 	--keep-case \
-	--interfaceView InterfaceView.aadl \
+	--interfaceView "$INTERFACEVIEW" \
 	--deploymentView "$DEPLOYMENTVIEW" \
 	-o "$OUTPUTDIR" \
 	--subC vizkit_robot:"$SKELS"/vizkit_robot.zip \
-	--subC test_robot:"$SKELS"/test_robot.zip \
-	-e x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/include \
-	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libvizkit3d_c.so \
-	-l x86_partition:"$AUTOPROJ_CURRENT_ROOT"/install/lib/libasn1_types_support.so \
+	--subCPP test_robot:"$SKELS"/test_robot.zip \
 	$ORCHESTRATOR_OPTIONS
