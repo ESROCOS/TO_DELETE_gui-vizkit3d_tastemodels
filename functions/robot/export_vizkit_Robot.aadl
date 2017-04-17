@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- AADL2.0
 -- TASTE
--- (c)Ellidiss Technologies
+-- 
 -- 
 ---------------------------------------------------
 
@@ -95,7 +95,7 @@ PROPERTIES
   Taste::dataView => ("DataView");
   Taste::dataViewPath => ("DataView.aadl");
   Taste::coordinates => "0 0 2970 2100";
-  Taste::version => "1.3.17";
+  Taste::version => "1.3.18";
 END export_vizkit_Robot::IV;
 
 PACKAGE export_vizkit_Robot::FV
