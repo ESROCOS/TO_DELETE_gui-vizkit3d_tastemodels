@@ -5,8 +5,7 @@
 /* Function static data is declared in this file : */
 #include "Context-vizkit-robot.h"
 
-#include "vizkit3d_c/vizkit3d_c.h"
-#include "vizkit3d_c/robotPluginWrapper.h"
+#include "vizkit3d_taste/vizkit3d_taste.h"
 #include <stdio.h>
 
 int g_statusOk = 0; // flag to avoid calling vizkit3d if instance not initialized or failed

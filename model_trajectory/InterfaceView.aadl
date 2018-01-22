@@ -1,13 +1,19 @@
 ---------------------------------------------------
--- AADL2.0
--- TASTE
--- (c)Ellidiss Technologies
+-- AADL2.1
+-- TASTE type interfaceview
 -- 
+-- generated code: do not edit
 ---------------------------------------------------
 
-PACKAGE interfaceview::FV::test_Trajectory
+PACKAGE interfaceview::IV::test_Trajectory
 PUBLIC
 
+WITH interfaceview::IV::vizkit_Trajectory;
+WITH interfaceview::IV::vizkit_Waypoint;
+WITH interfaceview::IV::vizkit_MotionCommand;
+WITH interfaceview::IV::vizkit_MotionCommand2;
+WITH interfaceview::IV::vizkit_Waypoint2;
+WITH interfaceview::IV::vizkit_Trajectory2;
 WITH Taste;
 WITH DataView;
 WITH TASTE_IV_Properties;
@@ -17,6 +23,8 @@ PROPERTIES
 END PI_trigger;
 
 SUBPROGRAM IMPLEMENTATION PI_trigger.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 100 ms;
 END PI_trigger.others;
 
 SUBPROGRAM RI_updateTrajectory
@@ -99,212 +107,58 @@ END RI_updateTrajectory2;
 SUBPROGRAM IMPLEMENTATION RI_updateTrajectory2.others
 END RI_updateTrajectory2.others;
 
-END interfaceview::FV::test_Trajectory;
-
-PACKAGE interfaceview::FV::vizkit_Trajectory
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SUBPROGRAM PI_updateTrajectory
-FEATURES
-  point : IN PARAMETER DataView::Vector3d {
-    Taste::encoding => NATIVE;
-  };
-PROPERTIES
-  Taste::Associated_Queue_Size => 1;
-END PI_updateTrajectory;
-
-SUBPROGRAM IMPLEMENTATION PI_updateTrajectory.others
-END PI_updateTrajectory.others;
-
-END interfaceview::FV::vizkit_Trajectory;
-
-PACKAGE interfaceview::FV::vizkit_Waypoint
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SUBPROGRAM PI_updateWaypoint
-FEATURES
-  waypoint : IN PARAMETER DataView::Waypoint {
-    Taste::encoding => NATIVE;
-  };
-PROPERTIES
-  Taste::Associated_Queue_Size => 1;
-END PI_updateWaypoint;
-
-SUBPROGRAM IMPLEMENTATION PI_updateWaypoint.others
-END PI_updateWaypoint.others;
-
-END interfaceview::FV::vizkit_Waypoint;
-
-PACKAGE interfaceview::FV::vizkit_MotionCommand
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SUBPROGRAM PI_updateMotionCommand
-FEATURES
-  command : IN PARAMETER DataView::Motion2D {
-    Taste::encoding => NATIVE;
-  };
-PROPERTIES
-  Taste::Associated_Queue_Size => 1;
-END PI_updateMotionCommand;
-
-SUBPROGRAM IMPLEMENTATION PI_updateMotionCommand.others
-END PI_updateMotionCommand.others;
-
-SUBPROGRAM PI_updatePose
-FEATURES
-  pose : IN PARAMETER DataView::Pose {
-    Taste::encoding => NATIVE;
-  };
-PROPERTIES
-  Taste::Associated_Queue_Size => 1;
-END PI_updatePose;
-
-SUBPROGRAM IMPLEMENTATION PI_updatePose.others
-END PI_updatePose.others;
-
-END interfaceview::FV::vizkit_MotionCommand;
-
-PACKAGE interfaceview::FV::vizkit_Trajectory2
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SUBPROGRAM PI_updateTrajectory
-FEATURES
-  point : IN PARAMETER DataView::Vector3d {
-    Taste::encoding => NATIVE;
-  };
-END PI_updateTrajectory;
-
-SUBPROGRAM IMPLEMENTATION PI_updateTrajectory.others
-END PI_updateTrajectory.others;
-
-END interfaceview::FV::vizkit_Trajectory2;
-
-PACKAGE interfaceview::FV::vizkit_MotionCommand2
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SUBPROGRAM PI_updateMotionCommand
-FEATURES
-  command : IN PARAMETER DataView::Motion2D {
-    Taste::encoding => NATIVE;
-  };
-END PI_updateMotionCommand;
-
-SUBPROGRAM IMPLEMENTATION PI_updateMotionCommand.others
-END PI_updateMotionCommand.others;
-
-SUBPROGRAM PI_updatePose
-FEATURES
-  pose : IN PARAMETER DataView::Pose {
-    Taste::encoding => NATIVE;
-  };
-END PI_updatePose;
-
-SUBPROGRAM IMPLEMENTATION PI_updatePose.others
-END PI_updatePose.others;
-
-END interfaceview::FV::vizkit_MotionCommand2;
-
-PACKAGE interfaceview::FV::vizkit_Waypoint2
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SUBPROGRAM PI_updateWaypoint
-FEATURES
-  waypoint : IN PARAMETER DataView::Waypoint {
-    Taste::encoding => NATIVE;
-  };
-PROPERTIES
-  Taste::Associated_Queue_Size => 1;
-END PI_updateWaypoint;
-
-SUBPROGRAM IMPLEMENTATION PI_updateWaypoint.others
-END PI_updateWaypoint.others;
-
-END interfaceview::FV::vizkit_Waypoint2;
-
-PACKAGE interfaceview::IV
-PUBLIC
-
-WITH interfaceview::FV::test_Trajectory;
-WITH interfaceview::FV::vizkit_Trajectory;
-WITH interfaceview::FV::vizkit_Waypoint;
-WITH interfaceview::FV::vizkit_MotionCommand;
-WITH interfaceview::FV::vizkit_MotionCommand2;
-WITH interfaceview::FV::vizkit_Waypoint2;
-WITH interfaceview::FV::vizkit_Trajectory2;
-WITH interfaceview::FV;
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
 SYSTEM test_Trajectory
 FEATURES
-  PI_trigger : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::test_Trajectory::PI_trigger.others {
+  PI_trigger : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::test_Trajectory::PI_trigger.others {
     Taste::coordinates => "185 159";
     Taste::RCMoperationKind => cyclic;
     Taste::RCMperiod => 100 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "trigger";
   };
-  RI_updateTrajectory : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Trajectory::PI_updateTrajectory.others {
+  RI_updateTrajectory : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Trajectory::PI_updateTrajectory.others {
     Taste::coordinates => "503 142";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updateTrajectory";
     Taste::labelInheritance => "true";
   };
-  RI_updateWaypoint : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Waypoint::PI_updateWaypoint.others {
+  RI_updateWaypoint : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Waypoint::PI_updateWaypoint.others {
     Taste::coordinates => "503 237";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updateWaypoint";
     Taste::labelInheritance => "true";
   };
-  RI_updateMotionCommand : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand::PI_updateMotionCommand.others {
+  RI_updateMotionCommand : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand::PI_updateMotionCommand.others {
     Taste::coordinates => "503 379";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updateMotionCommand";
     Taste::labelInheritance => "true";
   };
-  RI_updatePose : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand::PI_updatePose.others {
+  RI_updatePose : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand::PI_updatePose.others {
     Taste::coordinates => "503 418";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updatePose";
     Taste::labelInheritance => "true";
   };
-  RI_updateMotionCommand2 : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand2::PI_updateMotionCommand.others {
+  RI_updateMotionCommand2 : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand2::PI_updateMotionCommand.others {
     Taste::coordinates => "503 449";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updateMotionCommand2";
     Taste::labelInheritance => "false";
   };
-  RI_updatePose2 : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand2::PI_updatePose.others {
+  RI_updatePose2 : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand2::PI_updatePose.others {
     Taste::coordinates => "503 479";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updatePose2";
     Taste::labelInheritance => "false";
   };
-  RI_updateWaypoint2 : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Waypoint2::PI_updateWaypoint.others {
+  RI_updateWaypoint2 : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Waypoint2::PI_updateWaypoint.others {
     Taste::coordinates => "503 273";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updateWaypoint2";
     Taste::labelInheritance => "false";
   };
-  RI_updateTrajectory2 : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Trajectory2::PI_updateTrajectory.others {
+  RI_updateTrajectory2 : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Trajectory2::PI_updateTrajectory.others {
     Taste::coordinates => "503 178";
     Taste::RCMoperationKind => any;
     Taste::InterfaceName => "updateTrajectory2";
@@ -312,20 +166,37 @@ FEATURES
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END test_Trajectory;
 
 SYSTEM IMPLEMENTATION test_Trajectory.others
-SUBCOMPONENTS
-  trigger_impl : SUBPROGRAM interfaceview::FV::test_Trajectory::PI_trigger.others {
-    Compute_Execution_Time => 0 ms .. 100 ms;
-  };
-CONNECTIONS
-  OpToPICnx_trigger_impl : SUBPROGRAM ACCESS trigger_impl -> PI_trigger;
 END test_Trajectory.others;
+
+END interfaceview::IV::test_Trajectory;
+
+PACKAGE interfaceview::IV::vizkit_Trajectory
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateTrajectory
+FEATURES
+  point : IN PARAMETER DataView::Vector3d {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateTrajectory;
+
+SUBPROGRAM IMPLEMENTATION PI_updateTrajectory.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updateTrajectory.others;
 
 SYSTEM vizkit_Trajectory
 FEATURES
-  PI_updateTrajectory : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Trajectory::PI_updateTrajectory.others {
+  PI_updateTrajectory : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Trajectory::PI_updateTrajectory.others {
     Taste::coordinates => "882 245";
     Taste::RCMoperationKind => sporadic;
     Taste::RCMperiod => 0 ms;
@@ -334,6 +205,7 @@ FEATURES
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_Trajectory;
 
 SYSTEM IMPLEMENTATION vizkit_Trajectory.others
@@ -344,16 +216,33 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """Trajectory""";
   };
-  updateTrajectory_impl : SUBPROGRAM interfaceview::FV::vizkit_Trajectory::PI_updateTrajectory.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateTrajectory_impl : SUBPROGRAM ACCESS updateTrajectory_impl -> PI_updateTrajectory;
 END vizkit_Trajectory.others;
+
+END interfaceview::IV::vizkit_Trajectory;
+
+PACKAGE interfaceview::IV::vizkit_Waypoint
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateWaypoint
+FEATURES
+  waypoint : IN PARAMETER DataView::Waypoint {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateWaypoint;
+
+SUBPROGRAM IMPLEMENTATION PI_updateWaypoint.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updateWaypoint.others;
 
 SYSTEM vizkit_Waypoint
 FEATURES
-  PI_updateWaypoint : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Waypoint::PI_updateWaypoint.others {
+  PI_updateWaypoint : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Waypoint::PI_updateWaypoint.others {
     Taste::coordinates => "880 587";
     Taste::RCMoperationKind => sporadic;
     Taste::RCMperiod => 0 ms;
@@ -362,6 +251,7 @@ FEATURES
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_Waypoint;
 
 SYSTEM IMPLEMENTATION vizkit_Waypoint.others
@@ -372,23 +262,54 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """Waypoint""";
   };
-  updateWaypoint_impl : SUBPROGRAM interfaceview::FV::vizkit_Waypoint::PI_updateWaypoint.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateWaypoint_impl : SUBPROGRAM ACCESS updateWaypoint_impl -> PI_updateWaypoint;
 END vizkit_Waypoint.others;
+
+END interfaceview::IV::vizkit_Waypoint;
+
+PACKAGE interfaceview::IV::vizkit_MotionCommand
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateMotionCommand
+FEATURES
+  command : IN PARAMETER DataView::Motion2D {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateMotionCommand;
+
+SUBPROGRAM IMPLEMENTATION PI_updateMotionCommand.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updateMotionCommand.others;
+
+SUBPROGRAM PI_updatePose
+FEATURES
+  pose : IN PARAMETER DataView::Pose {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updatePose;
+
+SUBPROGRAM IMPLEMENTATION PI_updatePose.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updatePose.others;
 
 SYSTEM vizkit_MotionCommand
 FEATURES
-  PI_updateMotionCommand : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand::PI_updateMotionCommand.others {
+  PI_updateMotionCommand : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand::PI_updateMotionCommand.others {
     Taste::coordinates => "882 914";
     Taste::RCMoperationKind => sporadic;
     Taste::RCMperiod => 0 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updateMotionCommand";
   };
-  PI_updatePose : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand::PI_updatePose.others {
+  PI_updatePose : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand::PI_updatePose.others {
     Taste::coordinates => "882 942";
     Taste::RCMoperationKind => sporadic;
     Taste::RCMperiod => 0 ms;
@@ -397,6 +318,7 @@ FEATURES
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_MotionCommand;
 
 SYSTEM IMPLEMENTATION vizkit_MotionCommand.others
@@ -407,27 +329,42 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """Command""";
   };
-  updateMotionCommand_impl : SUBPROGRAM interfaceview::FV::vizkit_MotionCommand::PI_updateMotionCommand.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-  updatePose_impl : SUBPROGRAM interfaceview::FV::vizkit_MotionCommand::PI_updatePose.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateMotionCommand_impl : SUBPROGRAM ACCESS updateMotionCommand_impl -> PI_updateMotionCommand;
-  OpToPICnx_updatePose_impl : SUBPROGRAM ACCESS updatePose_impl -> PI_updatePose;
 END vizkit_MotionCommand.others;
+
+END interfaceview::IV::vizkit_MotionCommand;
+
+PACKAGE interfaceview::IV::vizkit_Trajectory2
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateTrajectory
+FEATURES
+  point : IN PARAMETER DataView::Vector3d {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateTrajectory;
+
+SUBPROGRAM IMPLEMENTATION PI_updateTrajectory.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updateTrajectory.others;
 
 SYSTEM vizkit_Trajectory2
 FEATURES
-  PI_updateTrajectory : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Trajectory2::PI_updateTrajectory.others {
+  PI_updateTrajectory : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Trajectory2::PI_updateTrajectory.others {
     Taste::coordinates => "882 417";
     Taste::RCMoperationKind => unprotected;
+    Taste::RCMperiod => 0 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updateTrajectory";
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_Trajectory2;
 
 SYSTEM IMPLEMENTATION vizkit_Trajectory2.others
@@ -438,29 +375,63 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """Trajectory2""";
   };
-  updateTrajectory_impl : SUBPROGRAM interfaceview::FV::vizkit_Trajectory2::PI_updateTrajectory.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateTrajectory_impl : SUBPROGRAM ACCESS updateTrajectory_impl -> PI_updateTrajectory;
 END vizkit_Trajectory2.others;
+
+END interfaceview::IV::vizkit_Trajectory2;
+
+PACKAGE interfaceview::IV::vizkit_MotionCommand2
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateMotionCommand
+FEATURES
+  command : IN PARAMETER DataView::Motion2D {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateMotionCommand;
+
+SUBPROGRAM IMPLEMENTATION PI_updateMotionCommand.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updateMotionCommand.others;
+
+SUBPROGRAM PI_updatePose
+FEATURES
+  pose : IN PARAMETER DataView::Pose {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updatePose;
+
+SUBPROGRAM IMPLEMENTATION PI_updatePose.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updatePose.others;
 
 SYSTEM vizkit_MotionCommand2
 FEATURES
-  PI_updateMotionCommand : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand2::PI_updateMotionCommand.others {
+  PI_updateMotionCommand : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand2::PI_updateMotionCommand.others {
     Taste::coordinates => "888 1085";
     Taste::RCMoperationKind => unprotected;
+    Taste::RCMperiod => 0 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updateMotionCommand";
   };
-  PI_updatePose : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_MotionCommand2::PI_updatePose.others {
+  PI_updatePose : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_MotionCommand2::PI_updatePose.others {
     Taste::coordinates => "888 1113";
     Taste::RCMoperationKind => unprotected;
+    Taste::RCMperiod => 0 ms;
     Taste::Deadline => 0 ms;
     Taste::InterfaceName => "updatePose";
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_MotionCommand2;
 
 SYSTEM IMPLEMENTATION vizkit_MotionCommand2.others
@@ -471,20 +442,33 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """Command2""";
   };
-  updateMotionCommand_impl : SUBPROGRAM interfaceview::FV::vizkit_MotionCommand2::PI_updateMotionCommand.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-  updatePose_impl : SUBPROGRAM interfaceview::FV::vizkit_MotionCommand2::PI_updatePose.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateMotionCommand_impl : SUBPROGRAM ACCESS updateMotionCommand_impl -> PI_updateMotionCommand;
-  OpToPICnx_updatePose_impl : SUBPROGRAM ACCESS updatePose_impl -> PI_updatePose;
 END vizkit_MotionCommand2.others;
+
+END interfaceview::IV::vizkit_MotionCommand2;
+
+PACKAGE interfaceview::IV::vizkit_Waypoint2
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_updateWaypoint
+FEATURES
+  waypoint : IN PARAMETER DataView::Waypoint {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_updateWaypoint;
+
+SUBPROGRAM IMPLEMENTATION PI_updateWaypoint.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_updateWaypoint.others;
 
 SYSTEM vizkit_Waypoint2
 FEATURES
-  PI_updateWaypoint : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_Waypoint2::PI_updateWaypoint.others {
+  PI_updateWaypoint : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_Waypoint2::PI_updateWaypoint.others {
     Taste::coordinates => "878 753";
     Taste::RCMoperationKind => unprotected;
     Taste::RCMperiod => 0 ms;
@@ -493,6 +477,7 @@ FEATURES
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_Waypoint2;
 
 SYSTEM IMPLEMENTATION vizkit_Waypoint2.others
@@ -503,62 +488,72 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """Waypoint2""";
   };
-  updateWaypoint_impl : SUBPROGRAM interfaceview::FV::vizkit_Waypoint2::PI_updateWaypoint.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateWaypoint_impl : SUBPROGRAM ACCESS updateWaypoint_impl -> PI_updateWaypoint;
 END vizkit_Waypoint2.others;
 
+END interfaceview::IV::vizkit_Waypoint2;
+
+PACKAGE interfaceview::IV
+PUBLIC
+
+WITH interfaceview::IV::test_Trajectory;
+WITH interfaceview::IV::vizkit_Trajectory;
+WITH interfaceview::IV::vizkit_Waypoint;
+WITH interfaceview::IV::vizkit_MotionCommand;
+WITH interfaceview::IV::vizkit_Trajectory2;
+WITH interfaceview::IV::vizkit_MotionCommand2;
+WITH interfaceview::IV::vizkit_Waypoint2;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
 SYSTEM interfaceview
 END interfaceview;
 
 SYSTEM IMPLEMENTATION interfaceview.others
 SUBCOMPONENTS
-  test_Trajectory : SYSTEM interfaceview::IV::test_Trajectory.others {
+  test_Trajectory : SYSTEM interfaceview::IV::test_Trajectory::test_Trajectory.others {
     Taste::coordinates => "185 113 503 517";
   };
-  vizkit_Trajectory : SYSTEM interfaceview::IV::vizkit_Trajectory.others {
+  vizkit_Trajectory : SYSTEM interfaceview::IV::vizkit_Trajectory::vizkit_Trajectory.others {
     Taste::coordinates => "882 128 1175 277";
   };
-  vizkit_Waypoint : SYSTEM interfaceview::IV::vizkit_Waypoint.others {
+  vizkit_Waypoint : SYSTEM interfaceview::IV::vizkit_Waypoint::vizkit_Waypoint.others {
     Taste::coordinates => "880 472 1178 621";
   };
-  vizkit_MotionCommand : SYSTEM interfaceview::IV::vizkit_MotionCommand.others {
+  vizkit_MotionCommand : SYSTEM interfaceview::IV::vizkit_MotionCommand::vizkit_MotionCommand.others {
     Taste::coordinates => "882 812 1181 961";
   };
-  vizkit_Trajectory2 : SYSTEM interfaceview::IV::vizkit_Trajectory2.others {
+  vizkit_Trajectory2 : SYSTEM interfaceview::IV::vizkit_Trajectory2::vizkit_Trajectory2.others {
     Taste::coordinates => "882 300 1175 449";
   };
-  vizkit_MotionCommand2 : SYSTEM interfaceview::IV::vizkit_MotionCommand2.others {
+  vizkit_MotionCommand2 : SYSTEM interfaceview::IV::vizkit_MotionCommand2::vizkit_MotionCommand2.others {
     Taste::coordinates => "888 983 1187 1132";
   };
-  vizkit_Waypoint2 : SYSTEM interfaceview::IV::vizkit_Waypoint2.others {
+  vizkit_Waypoint2 : SYSTEM interfaceview::IV::vizkit_Waypoint2::vizkit_Waypoint2.others {
     Taste::coordinates => "878 638 1176 787";
   };
 CONNECTIONS
-  vizkit_Trajectory_updateTrajectory_test_Trajectory_updateTrajectory : SUBPROGRAM ACCESS vizkit_Trajectory.PI_updateTrajectory -> test_Trajectory.RI_updateTrajectory {
+  vizkit_Trajectory_PI_updateTrajectory_test_Trajectory_RI_updateTrajectory : SUBPROGRAM ACCESS vizkit_Trajectory.PI_updateTrajectory -> test_Trajectory.RI_updateTrajectory {
     Taste::coordinates => "503 142 760 142 760 245 882 245";
   };
-  vizkit_Waypoint_updateWaypoint_test_Trajectory_updateWaypoint : SUBPROGRAM ACCESS vizkit_Waypoint.PI_updateWaypoint -> test_Trajectory.RI_updateWaypoint {
+  vizkit_Waypoint_PI_updateWaypoint_test_Trajectory_RI_updateWaypoint : SUBPROGRAM ACCESS vizkit_Waypoint.PI_updateWaypoint -> test_Trajectory.RI_updateWaypoint {
     Taste::coordinates => "503 237 690 237 690 587 880 587";
   };
-  vizkit_MotionCommand_updateMotionCommand_test_Trajectory_updateMotionCommand : SUBPROGRAM ACCESS vizkit_MotionCommand.PI_updateMotionCommand -> test_Trajectory.RI_updateMotionCommand {
+  vizkit_MotionCommand_PI_updateMotionCommand_test_Trajectory_RI_updateMotionCommand : SUBPROGRAM ACCESS vizkit_MotionCommand.PI_updateMotionCommand -> test_Trajectory.RI_updateMotionCommand {
     Taste::coordinates => "503 379 637 379 637 914 882 914";
   };
-  vizkit_MotionCommand_updatePose_test_Trajectory_updatePose : SUBPROGRAM ACCESS vizkit_MotionCommand.PI_updatePose -> test_Trajectory.RI_updatePose {
+  vizkit_MotionCommand_PI_updatePose_test_Trajectory_RI_updatePose : SUBPROGRAM ACCESS vizkit_MotionCommand.PI_updatePose -> test_Trajectory.RI_updatePose {
     Taste::coordinates => "503 418 617 418 617 942 882 942";
   };
-  vizkit_MotionCommand2_updateMotionCommand_test_Trajectory_updateMotionCommand2 : SUBPROGRAM ACCESS vizkit_MotionCommand2.PI_updateMotionCommand -> test_Trajectory.RI_updateMotionCommand2 {
-    Taste::coordinates => "502 449 577 449 577 1085 888 1085";
+  vizkit_MotionCommand2_PI_updateMotionCommand_test_Trajectory_RI_updateMotionCommand2 : SUBPROGRAM ACCESS vizkit_MotionCommand2.PI_updateMotionCommand -> test_Trajectory.RI_updateMotionCommand2 {
+    Taste::coordinates => "503 449 695 449 695 1085 888 1085";
   };
-  vizkit_MotionCommand2_updatePose_test_Trajectory_updatePose2 : SUBPROGRAM ACCESS vizkit_MotionCommand2.PI_updatePose -> test_Trajectory.RI_updatePose2 {
-    Taste::coordinates => "502 479 559 479 559 1113 888 1113";
+  vizkit_MotionCommand2_PI_updatePose_test_Trajectory_RI_updatePose2 : SUBPROGRAM ACCESS vizkit_MotionCommand2.PI_updatePose -> test_Trajectory.RI_updatePose2 {
+    Taste::coordinates => "503 479 695 479 695 1113 888 1113";
   };
-  vizkit_Waypoint2_updateWaypoint_test_Trajectory_updateWaypoint2 : SUBPROGRAM ACCESS vizkit_Waypoint2.PI_updateWaypoint -> test_Trajectory.RI_updateWaypoint2 {
+  vizkit_Waypoint2_PI_updateWaypoint_test_Trajectory_RI_updateWaypoint2 : SUBPROGRAM ACCESS vizkit_Waypoint2.PI_updateWaypoint -> test_Trajectory.RI_updateWaypoint2 {
     Taste::coordinates => "503 273 668 273 668 753 878 753";
   };
-  vizkit_Trajectory2_updateTrajectory_test_Trajectory_updateTrajectory2 : SUBPROGRAM ACCESS vizkit_Trajectory2.PI_updateTrajectory -> test_Trajectory.RI_updateTrajectory2 {
+  vizkit_Trajectory2_PI_updateTrajectory_test_Trajectory_RI_updateTrajectory2 : SUBPROGRAM ACCESS vizkit_Trajectory2.PI_updateTrajectory -> test_Trajectory.RI_updateTrajectory2 {
     Taste::coordinates => "503 178 735 178 735 417 882 417";
   };
 END interfaceview.others;
@@ -567,14 +562,6 @@ PROPERTIES
   Taste::dataView => ("DataView");
   Taste::dataViewPath => ("DataView.aadl");
   Taste::coordinates => "0 0 2970 2100";
-  Taste::version => "1.3.17";
+  Taste::version => "2.0";
 END interfaceview::IV;
-
-PACKAGE interfaceview::FV
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-END interfaceview::FV;
 

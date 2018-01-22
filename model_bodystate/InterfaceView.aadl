@@ -1,11 +1,11 @@
 ---------------------------------------------------
--- AADL2.0
--- TASTE
--- (c)Ellidiss Technologies
+-- AADL2.1
+-- TASTE type interfaceview
 -- 
+-- generated code: do not edit
 ---------------------------------------------------
 
-PACKAGE interfaceview::FV::vizkit_RigidBodyState
+PACKAGE interfaceview::IV::vizkit_RigidBodyState
 PUBLIC
 
 WITH Taste;
@@ -21,13 +21,42 @@ PROPERTIES
 END PI_updateRigidBodyState;
 
 SUBPROGRAM IMPLEMENTATION PI_updateRigidBodyState.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
 END PI_updateRigidBodyState.others;
 
-END interfaceview::FV::vizkit_RigidBodyState;
+SYSTEM vizkit_RigidBodyState
+FEATURES
+  PI_updateRigidBodyState : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
+    Taste::coordinates => "1430 464";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 0 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "updateRigidBodyState";
+  };
+PROPERTIES
+  Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
+  Source_Text => ("vizkit_rigidbodystate.zip");
+END vizkit_RigidBodyState;
 
-PACKAGE interfaceview::FV::test_BodyState
+SYSTEM IMPLEMENTATION vizkit_RigidBodyState.others
+SUBCOMPONENTS
+  configFile : DATA DataView::VizkitFilePath {
+    Taste::FS_Default_Value => """config-bodystate.yml""";
+  };
+  id : DATA DataView::VizkitPluginLabel {
+    Taste::FS_Default_Value => """RBS""";
+  };
+END vizkit_RigidBodyState.others;
+
+END interfaceview::IV::vizkit_RigidBodyState;
+
+PACKAGE interfaceview::IV::test_BodyState
 PUBLIC
 
+WITH interfaceview::IV::vizkit_RigidBodyState;
+WITH interfaceview::IV::vizkit_BodyState;
 WITH Taste;
 WITH DataView;
 WITH TASTE_IV_Properties;
@@ -37,6 +66,8 @@ PROPERTIES
 END PI_trigger;
 
 SUBPROGRAM IMPLEMENTATION PI_trigger.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 100 ms;
 END PI_trigger.others;
 
 SUBPROGRAM RI_updateRigidBodyState
@@ -59,9 +90,38 @@ END RI_updateBodyState;
 SUBPROGRAM IMPLEMENTATION RI_updateBodyState.others
 END RI_updateBodyState.others;
 
-END interfaceview::FV::test_BodyState;
+SYSTEM test_BodyState
+FEATURES
+  PI_trigger : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::test_BodyState::PI_trigger.others {
+    Taste::coordinates => "524 463";
+    Taste::RCMoperationKind => cyclic;
+    Taste::RCMperiod => 100 ms;
+    Taste::Deadline => 0 ms;
+    Taste::InterfaceName => "trigger";
+  };
+  RI_updateRigidBodyState : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
+    Taste::coordinates => "956 570";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "updateRigidBodyState";
+    Taste::labelInheritance => "true";
+  };
+  RI_updateBodyState : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::vizkit_BodyState::PI_updateBodyState.others {
+    Taste::coordinates => "956 613";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "updateBodyState";
+    Taste::labelInheritance => "true";
+  };
+PROPERTIES
+  Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
+END test_BodyState;
 
-PACKAGE interfaceview::FV::vizkit_BodyState
+SYSTEM IMPLEMENTATION test_BodyState.others
+END test_BodyState.others;
+
+END interfaceview::IV::test_BodyState;
+
+PACKAGE interfaceview::IV::vizkit_BodyState
 PUBLIC
 
 WITH Taste;
@@ -77,85 +137,13 @@ PROPERTIES
 END PI_updateBodyState;
 
 SUBPROGRAM IMPLEMENTATION PI_updateBodyState.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
 END PI_updateBodyState.others;
-
-END interfaceview::FV::vizkit_BodyState;
-
-PACKAGE interfaceview::IV
-PUBLIC
-
-WITH interfaceview::FV::vizkit_RigidBodyState;
-WITH interfaceview::FV::test_BodyState;
-WITH interfaceview::FV::vizkit_BodyState;
-WITH interfaceview::FV;
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-SYSTEM vizkit_RigidBodyState
-FEATURES
-  PI_updateRigidBodyState : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
-    Taste::coordinates => "1430 464";
-    Taste::RCMoperationKind => sporadic;
-    Taste::RCMperiod => 0 ms;
-    Taste::Deadline => 0 ms;
-    Taste::InterfaceName => "updateRigidBodyState";
-  };
-PROPERTIES
-  Source_Language => (C);
-END vizkit_RigidBodyState;
-
-SYSTEM IMPLEMENTATION vizkit_RigidBodyState.others
-SUBCOMPONENTS
-  configFile : DATA DataView::VizkitFilePath {
-    Taste::FS_Default_Value => """config-bodystate.yml""";
-  };
-  id : DATA DataView::VizkitPluginLabel {
-    Taste::FS_Default_Value => """RBS""";
-  };
-  updateRigidBodyState_impl : SUBPROGRAM interfaceview::FV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateRigidBodyState_impl : SUBPROGRAM ACCESS updateRigidBodyState_impl -> PI_updateRigidBodyState;
-END vizkit_RigidBodyState.others;
-
-SYSTEM test_BodyState
-FEATURES
-  PI_trigger : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::test_BodyState::PI_trigger.others {
-    Taste::coordinates => "524 463";
-    Taste::RCMoperationKind => cyclic;
-    Taste::RCMperiod => 100 ms;
-    Taste::Deadline => 0 ms;
-    Taste::InterfaceName => "trigger";
-  };
-  RI_updateRigidBodyState : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_RigidBodyState::PI_updateRigidBodyState.others {
-    Taste::coordinates => "956 570";
-    Taste::RCMoperationKind => any;
-    Taste::InterfaceName => "updateRigidBodyState";
-    Taste::labelInheritance => "true";
-  };
-  RI_updateBodyState : REQUIRES SUBPROGRAM ACCESS interfaceview::FV::vizkit_BodyState::PI_updateBodyState.others {
-    Taste::coordinates => "956 613";
-    Taste::RCMoperationKind => any;
-    Taste::InterfaceName => "updateBodyState";
-    Taste::labelInheritance => "true";
-  };
-PROPERTIES
-  Source_Language => (C);
-END test_BodyState;
-
-SYSTEM IMPLEMENTATION test_BodyState.others
-SUBCOMPONENTS
-  trigger_impl : SUBPROGRAM interfaceview::FV::test_BodyState::PI_trigger.others {
-    Compute_Execution_Time => 0 ms .. 100 ms;
-  };
-CONNECTIONS
-  OpToPICnx_trigger_impl : SUBPROGRAM ACCESS trigger_impl -> PI_trigger;
-END test_BodyState.others;
 
 SYSTEM vizkit_BodyState
 FEATURES
-  PI_updateBodyState : PROVIDES SUBPROGRAM ACCESS interfaceview::FV::vizkit_BodyState::PI_updateBodyState.others {
+  PI_updateBodyState : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::vizkit_BodyState::PI_updateBodyState.others {
     Taste::coordinates => "1440 688";
     Taste::RCMoperationKind => unprotected;
     Taste::RCMperiod => 0 ms;
@@ -164,6 +152,7 @@ FEATURES
   };
 PROPERTIES
   Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
 END vizkit_BodyState;
 
 SYSTEM IMPLEMENTATION vizkit_BodyState.others
@@ -174,13 +163,19 @@ SUBCOMPONENTS
   id : DATA DataView::VizkitPluginLabel {
     Taste::FS_Default_Value => """BS""";
   };
-  updateBodyState_impl : SUBPROGRAM interfaceview::FV::vizkit_BodyState::PI_updateBodyState.others {
-    Compute_Execution_Time => 0 ms .. 0 ms;
-  };
-CONNECTIONS
-  OpToPICnx_updateBodyState_impl : SUBPROGRAM ACCESS updateBodyState_impl -> PI_updateBodyState;
 END vizkit_BodyState.others;
 
+END interfaceview::IV::vizkit_BodyState;
+
+PACKAGE interfaceview::IV
+PUBLIC
+
+WITH interfaceview::IV::vizkit_RigidBodyState;
+WITH interfaceview::IV::test_BodyState;
+WITH interfaceview::IV::vizkit_BodyState;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
 SYSTEM interfaceview
 END interfaceview;
 
@@ -189,20 +184,20 @@ SUBCOMPONENTS
 -- [ interfaceview::IV::interfaceview.others.vizkit_RigidBodyState - text 
 --vizkit3d plugin RigidBodyStateVisualization. 
 --]
-  vizkit_RigidBodyState : SYSTEM interfaceview::IV::vizkit_RigidBodyState.others {
+  vizkit_RigidBodyState : SYSTEM interfaceview::IV::vizkit_RigidBodyState::vizkit_RigidBodyState.others {
     Taste::coordinates => "1430 326 1756 486";
   };
-  test_BodyState : SYSTEM interfaceview::IV::test_BodyState.others {
+  test_BodyState : SYSTEM interfaceview::IV::test_BodyState::test_BodyState.others {
     Taste::coordinates => "524 430 956 650";
   };
-  vizkit_BodyState : SYSTEM interfaceview::IV::vizkit_BodyState.others {
+  vizkit_BodyState : SYSTEM interfaceview::IV::vizkit_BodyState::vizkit_BodyState.others {
     Taste::coordinates => "1440 567 1763 724";
   };
 CONNECTIONS
-  vizkit_RigidBodyState_updateRigidBodyState_test_BodyState_updateRigidBodyState : SUBPROGRAM ACCESS vizkit_RigidBodyState.PI_updateRigidBodyState -> test_BodyState.RI_updateRigidBodyState {
+  vizkit_RigidBodyState_PI_updateRigidBodyState_test_BodyState_RI_updateRigidBodyState : SUBPROGRAM ACCESS vizkit_RigidBodyState.PI_updateRigidBodyState -> test_BodyState.RI_updateRigidBodyState {
     Taste::coordinates => "956 570 1186 570 1186 464 1430 464";
   };
-  vizkit_BodyState_updateBodyState_test_BodyState_updateBodyState : SUBPROGRAM ACCESS vizkit_BodyState.PI_updateBodyState -> test_BodyState.RI_updateBodyState {
+  vizkit_BodyState_PI_updateBodyState_test_BodyState_RI_updateBodyState : SUBPROGRAM ACCESS vizkit_BodyState.PI_updateBodyState -> test_BodyState.RI_updateBodyState {
     Taste::coordinates => "956 613 1202 613 1202 688 1440 688";
   };
 END interfaceview.others;
@@ -211,14 +206,6 @@ PROPERTIES
   Taste::dataView => ("DataView");
   Taste::dataViewPath => ("DataView.aadl");
   Taste::coordinates => "0 0 2970 2100";
-  Taste::version => "1.3.17";
+  Taste::version => "2.0";
 END interfaceview::IV;
-
-PACKAGE interfaceview::FV
-PUBLIC
-
-WITH Taste;
-WITH DataView;
-WITH TASTE_IV_Properties;
-END interfaceview::FV;
 

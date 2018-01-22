@@ -11,6 +11,10 @@ model*/range/sonar_beam.data
 model*/robot/spacebot_arm*
 model*/build-log.txt
 model*/run-log.txt
+model*/__iv_1_3.aadl
+model*/__dv_1_3.aadl
+model*/interfaceview.pro
+model*/deployment.pro
 coverage.info
 coverage
 export

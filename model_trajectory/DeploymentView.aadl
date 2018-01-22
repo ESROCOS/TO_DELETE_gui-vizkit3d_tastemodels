@@ -1,11 +1,11 @@
 ---------------------------------------------------
--- AADL2.0
--- TASTE
--- (c)Ellidiss Technologies
+-- AADL2.1
+-- TASTE type deploymentview
 -- 
+-- generated code: do not edit
 ---------------------------------------------------
 
-PACKAGE deploymentview::DV::pc
+PACKAGE deploymentview::DV::Node1
 PUBLIC
 
 WITH Taste;
@@ -17,84 +17,83 @@ END x86_partition;
 PROCESS IMPLEMENTATION x86_partition.others
 END x86_partition.others;
 
-END deploymentview::DV::pc;
+END deploymentview::DV::Node1;
 
 PACKAGE deploymentview::DV
 PUBLIC
 
+WITH interfaceview::IV::vizkit_Trajectory;
+WITH interfaceview::IV::vizkit_Waypoint;
+WITH interfaceview::IV::vizkit_MotionCommand;
+WITH interfaceview::IV::vizkit_Trajectory2;
+WITH interfaceview::IV::vizkit_Waypoint2;
+WITH interfaceview::IV::vizkit_MotionCommand2;
+WITH interfaceview::IV::test_Trajectory;
 WITH ocarina_processors_x86;
-WITH deploymentview::DV::pc;
+WITH deploymentview::DV::Node1;
 WITH Taste;
 WITH Deployment;
 WITH interfaceview::IV;
 WITH TASTE_DV_Properties;
-SYSTEM pc
-END pc;
+SYSTEM Node1
+END Node1;
 
-SYSTEM IMPLEMENTATION pc.others
+SYSTEM IMPLEMENTATION Node1.others
 SUBCOMPONENTS
-  IV_vizkit_MotionCommand : SYSTEM interfaceview::IV::vizkit_MotionCommand.others {
-    Taste::coordinates => "1564 1041 2282 1287";
-    Taste::FunctionName => "vizkit_MotionCommand";
-  };
-  IV_vizkit_Waypoint : SYSTEM interfaceview::IV::vizkit_Waypoint.others {
-    Taste::coordinates => "1056 903 1682 1144";
-    Taste::FunctionName => "vizkit_Waypoint";
-  };
-  IV_vizkit_Trajectory : SYSTEM interfaceview::IV::vizkit_Trajectory.others {
-    Taste::coordinates => "456 800 1144 1036";
+  IV_vizkit_Trajectory : SYSTEM interfaceview::IV::vizkit_Trajectory::vizkit_Trajectory.others {
     Taste::FunctionName => "vizkit_Trajectory";
   };
-  IV_test_Trajectory : SYSTEM interfaceview::IV::test_Trajectory.others {
-    Taste::coordinates => "1580 564 2180 805";
-    Taste::FunctionName => "test_Trajectory";
+  IV_vizkit_Waypoint : SYSTEM interfaceview::IV::vizkit_Waypoint::vizkit_Waypoint.others {
+    Taste::FunctionName => "vizkit_Waypoint";
   };
-  IV_vizkit_Trajectory2 : SYSTEM interfaceview::IV::vizkit_Trajectory2.others {
-    Taste::coordinates => "498 1200 1093 1400";
+  IV_vizkit_MotionCommand : SYSTEM interfaceview::IV::vizkit_MotionCommand::vizkit_MotionCommand.others {
+    Taste::FunctionName => "vizkit_MotionCommand";
+  };
+  IV_vizkit_Trajectory2 : SYSTEM interfaceview::IV::vizkit_Trajectory2::vizkit_Trajectory2.others {
     Taste::FunctionName => "vizkit_Trajectory2";
   };
-  IV_vizkit_MotionCommand2 : SYSTEM interfaceview::IV::vizkit_MotionCommand2.others {
-    Taste::coordinates => "1611 1369 2272 1595";
-    Taste::FunctionName => "vizkit_MotionCommand2";
-  };
-  IV_vizkit_Waypoint2 : SYSTEM interfaceview::IV::vizkit_Waypoint2.others {
-    Taste::coordinates => "1041 1349 1724 1539";
+  IV_vizkit_Waypoint2 : SYSTEM interfaceview::IV::vizkit_Waypoint2::vizkit_Waypoint2.others {
     Taste::FunctionName => "vizkit_Waypoint2";
   };
-  x86_partition : PROCESS deploymentview::DV::pc::x86_partition.others {
-    Taste::coordinates => "400 533 2330 1616";
-    TASTE_DV_Properties::CoverageEnabled => TRUE;
+  IV_vizkit_MotionCommand2 : SYSTEM interfaceview::IV::vizkit_MotionCommand2::vizkit_MotionCommand2.others {
+    Taste::FunctionName => "vizkit_MotionCommand2";
+  };
+  IV_test_Trajectory : SYSTEM interfaceview::IV::test_Trajectory::test_Trajectory.others {
+    Taste::FunctionName => "test_Trajectory";
+  };
+  x86_partition : PROCESS deploymentview::DV::Node1::x86_partition.others {
+    Taste::coordinates => "790 777 1435 1319";
     Deployment::Port_Number => 0;
   };
-  x86_native : PROCESSOR ocarina_processors_x86::x86.native {
-    Taste::coordinates => "251 267 2546 1743";
+  x86_linux : PROCESSOR ocarina_processors_x86::x86.linux {
+    Taste::coordinates => "727 622 1526 1396";
   };
 PROPERTIES
-  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_MotionCommand;
-  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Waypoint;
   Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Trajectory;
-  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_test_Trajectory;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Waypoint;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_MotionCommand;
   Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Trajectory2;
-  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_MotionCommand2;
   Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_Waypoint2;
-  Actual_Processor_Binding => (reference (x86_native)) APPLIES TO x86_partition;
-END pc.others;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_vizkit_MotionCommand2;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_test_Trajectory;
+  Actual_Processor_Binding => (reference (x86_linux)) APPLIES TO x86_partition;
+END Node1.others;
 
 SYSTEM deploymentview
 END deploymentview;
 
 SYSTEM IMPLEMENTATION deploymentview.others
 SUBCOMPONENTS
-  pc : SYSTEM pc.others {
-    Taste::coordinates => "118 113 2816 1924";
+  Node1 : SYSTEM Node1.others {
+    Taste::coordinates => "648 401 1695 1506";
   };
   interfaceview : SYSTEM interfaceview::IV::interfaceview.others;
 END deploymentview.others;
 
 PROPERTIES
   Taste::coordinates => "0 0 2970 2100";
-  Taste::version => "1.3.17";
+  Taste::version => "2.0";
   Taste::interfaceView => "InterfaceView.aadl";
-  Taste::HWLibraries => ("../../../../../../tool-inst/share/ocarina/AADLv2/ocarina_components.aadl");
+  Taste::HWLibraries => ("../../../../../tool-inst/share/ocarina/AADLv2/ocarina_components.aadl");
 END deploymentview::DV;
 

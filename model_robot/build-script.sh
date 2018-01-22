@@ -1,19 +1,21 @@
-#!/bin/bash
+#!/bin/bash -e
 
-# This script will build your TASTE system (by default with the C runtime).
+# This script will build your TASTE system.
 
 # You should not change this file as it was automatically generated.
 
-# If you need additional preprocessing, create a file named 'user_init_pre.sh'
-# and/or 'user_init_post.sh - They will never get overwritten.'
+# If you need additional preprocessing, there are three hook files
+# that you can provide and that are called dring the build:
+# user_init_pre.sh, user_init_post.sh and user_init_last.sh
+# These files will never get overwritten by TASTE.'
 
 # Inside these files you may set some environment variables:
-#    C_INCLUDE_PATH=/usr/include/xenomai/analogy/:$C_INCLUDE_PATH
+#    C_INCLUDE_PATH=/usr/include/xenomai/analogy/:${C_INCLUDE_PATH}
 #    unset USE_POHIC   
 
 CWD=$(pwd)
 
-if [ -t 0 ] ; then
+if [ -t 1 ] ; then
     COLORON="\e[1m\e[32m"
     COLOROFF="\e[0m"
 else
@@ -30,6 +32,9 @@ fi
 
 # Use PolyORB-HI-C runtime
 USE_POHIC=1
+
+# Set Debug mode by default
+DEBUG_MODE=--debug
 
 # Detect models from Ellidiss tools v2, and convert them to 1.3
 INTERFACEVIEW=InterfaceView.aadl
@@ -53,8 +58,8 @@ grep "version => \"2" "$DEPLOYMENTVIEW" >/dev/null && {
 
 SKELS="./"
 
-# Update the data view with local paths
-taste-update-data-view
+# Check if Dataview references existing files 
+mono $(which taste-extract-asn-from-design.exe) -i "$INTERFACEVIEW" -j /tmp/dv.asn
 
 cd "$SKELS" && rm -f vizkit_robot.zip && zip vizkit_robot vizkit_robot/* && cd $OLDPWD
 
@@ -65,6 +70,20 @@ cd "$SKELS" && rm -f test_robot.zip && zip test_robot test_robot/* && cd $OLDPWD
 if [ -f ConcurrencyView.pro ]
 then
     ORCHESTRATOR_OPTIONS+=" -w ConcurrencyView.pro "
+elif [ -f ConcurrencyView_Properties.aadl ]
+then
+    ORCHESTRATOR_OPTIONS+=" -w ConcurrencyView_Properties.aadl "
+fi
+
+if [ -f user_init_post.sh ]
+then
+    echo -e "${INFO} Executing user-defined post-init script"
+    source user_init_post.sh
+fi
+
+if [ -f additionalCommands.sh ]
+then
+    source additionalCommands.sh
 fi
 
 if [ ! -z "$USE_POHIC" ]
@@ -78,15 +97,9 @@ else
     OUTPUTDIR=binary
 fi
 
-if [ -f user_init_post.sh ]
-then
-    echo -e "${INFO} Executing user-defined init script"
-    source user_init_post.sh
-fi
-
 cd "$CWD" && assert-builder-ocarina.py \
 	--fast \
-	--debug \
+	$DEBUG_MODE \
 	--aadlv2 \
 	--keep-case \
 	--interfaceView "$INTERFACEVIEW" \
@@ -95,3 +108,10 @@ cd "$CWD" && assert-builder-ocarina.py \
 	--subC vizkit_robot:"$SKELS"/vizkit_robot.zip \
 	--subCPP test_robot:"$SKELS"/test_robot.zip \
 	$ORCHESTRATOR_OPTIONS
+
+if [ -f user_init_last.sh ]
+then
+    echo -e "${INFO} Executing user-defined post-build script"
+    source user_init_last.sh
+fi
+
