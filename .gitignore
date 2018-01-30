@@ -15,6 +15,6 @@ model*/__iv_1_3.aadl
 model*/__dv_1_3.aadl
 model*/interfaceview.pro
 model*/deployment.pro
-coverage.info
+coverage*.info
 coverage
 export

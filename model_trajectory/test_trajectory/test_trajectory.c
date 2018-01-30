@@ -87,5 +87,11 @@ void test_trajectory_PI_trigger()
     }
     
     i++;
+
+    // Exit automatically to collect coverage data
+    if (i > 100)
+    {
+        exit(0);
+    }
 }
 

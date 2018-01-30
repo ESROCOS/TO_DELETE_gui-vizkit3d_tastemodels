@@ -49,5 +49,9 @@ void vizkit_bodystate_PI_updateBodyState(const asn1SccBodyState *IN_state)
             g_statusOk = 0;
         }
     }
+    else
+    {
+        exit(0);
+    }
 }
 

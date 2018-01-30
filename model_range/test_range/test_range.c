@@ -112,5 +112,11 @@ void test_range_PI_trigger()
     test_range_RI_updatePose_LS(&pose);
 
     i++;
+
+    // Exit automatically to collect coverage data
+    if (i > 100)
+    {
+        exit(0);
+    }
 }
 

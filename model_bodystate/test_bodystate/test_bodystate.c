@@ -32,5 +32,11 @@ void test_bodystate_PI_trigger()
     test_bodystate_RI_updateBodyState(&bs);
 
     i++;
+    
+    // Exit automatically to collect coverage data
+    if (i > 50)
+    {
+        exit(0);
+    }
 }
 

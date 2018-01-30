@@ -60,5 +60,11 @@ void test_robot_PI_trigger()
     test_robot_RI_updateJoints(&joints);
 
     i++;
+
+    // Exit automatically to collect coverage data
+    if (i > 100)
+    {
+        exit(0);
+    }
 }
 
